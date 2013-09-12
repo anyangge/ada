@@ -4005,6 +4005,39 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
         // invokes the private method to get all the records
         return $this->_find_nodes_history_list($out_fields_ar, $clause);
     }
+    
+    /**
+     * Counts number of nodes for the given course id
+     * 
+     * @param string $id_course the course to count nodes
+     * @return number of node or AMA_Error
+     */
+    public function get_total_nodes_for_course ($id_course=null)
+    {
+    	if (!is_null($id_course))
+    	{    		
+    		$sql = "SELECT COUNT(DISTINCT(id_nodo)) FROM nodo WHERE id_nodo LIKE ?";
+    		return $this->getOnePrepared ($sql, $id_course.'_%');
+    	}
+    	else return 0;
+    	 
+    }
+    
+    public function get_student_visited_nodes_for_instance ($id_student = null, $id_course = null, $id_course_instance = null)
+    {
+    	if (!is_null($id_student) && !is_null($id_course) && !is_null($id_course_instance))
+    	{
+    		$nodeTypesToCount = array (ADA_LEAF_TYPE, ADA_GROUP_TYPE);
+    		
+    		$sql = "SELECT COUNT(DISTINCT(HS.`id_nodo`)) 
+    				FROM `history_nodi` HS 
+    				LEFT JOIN `nodo` N ON HS.`id_nodo`=N.`id_nodo` 
+    				WHERE N.`tipo` IN (".implode (',',$nodeTypesToCount).") AND HS.`id_utente_studente`=? AND  HS.`id_nodo` LIKE ? AND HS.`id_istanza_corso`=?";
+    		
+    		return $this->getOnePrepared ($sql, array ($id_student, $id_course.'_%', $id_course_instance));
+    	} 
+    	else return 0;
+    }
 
     /**
      * Return student subscribed course instance

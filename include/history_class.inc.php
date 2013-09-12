@@ -480,6 +480,24 @@ class History
     }
     return $data;
   }
+  
+  public static function  get_student_visited_nodes_for_instance ($id_student = null, $id_course = null, $id_course_instance = null)
+  {
+    if (!is_null($id_student) && !is_null($id_course) && !is_null($id_course_instance))
+  	{
+  		return $GLOBALS['dh']->get_student_visited_nodes_for_instance ($id_student, $id_course, $id_course_instance); 
+  	}
+  	else return 0;		
+  }
+  
+  public static function get_total_nodes_for_course ($id_course=null)
+  {
+  	if (!is_null($id_course))
+  	{  		
+  		return $GLOBALS['dh']->get_total_nodes_for_course($id_course);
+  	}
+  	else return 0;  	
+  }
 
   /**
    * getIcon

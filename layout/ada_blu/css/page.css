@@ -110,7 +110,7 @@ a:visited {text-decoration: none; }
 
 #mainmenu {
     position: absolute;
-    top: 75px; left:0;
+    top: 80px; left:0;
     padding: 0;
     z-index: 1000;
     width:100%;
@@ -139,7 +139,7 @@ a:visited {text-decoration: none; }
     text-transform: capitalize;
     padding: 0px 35px 0px 0px;
     font-size:0.85em;
-    line-height:1.3em;
+    line-height:2.5em;
 }
 #user_data SPAN {
     font-weight:bold;
@@ -407,30 +407,35 @@ width: 700px;
 /* loghi in header */
 
 
+/* loghi in header */
+
+
 #logo_title {
-    position: relative;
-    top: 0;
+	position: relative;
+	top: 0;
 	float:left;
-
 }
 
-#endo_section {
+/*
+#logo_seconda {
+    float: left;
+    margin-left: 15px;
     position: relative;
     top: 0;
-	float:left;
-	margin-left:15px;
 }
+*/
 
-
-
-#eeu_logo {
+#logo_terza {
     position: absolute;
     right: 40px;
     top: 12px;
 }
-	
+
+
 	
 .vtop {
     vertical-align: top;
 }
+
+
 

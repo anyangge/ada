@@ -1,0 +1,694 @@
+
+/* fontawesome x le icone */
+
+@font-face {
+  	font-family: 'FontAwesome';
+  	src: url('font/fontawesome-webfont.eot');
+  	src: url('font/fontawesome-webfont.eot?#iefix') format('eot'), 
+  		url('../font/fontawesome-webfont.woff') format('woff'), 
+  		url('../font/fontawesome-webfont.ttf') format('truetype'), 
+  		url('../font/fontawesome-webfont.svg#FontAwesome') format('svg');
+}
+
+
+/* font consilia - yanone kaffeesatz */
+
+@font-face {
+    font-family: 'kaffeesatzregular';
+    src: url('font/yanonekaffeesatz-regular-webfont.eot');
+    src: url('font/yanonekaffeesatz-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/yanonekaffeesatz-regular-webfont.woff') format('woff'),
+         url('font/yanonekaffeesatz-regular-webfont.ttf') format('truetype'),
+         url('font/yanonekaffeesatz-regular-webfont.svg#kaffeesatzregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'kaffeesatzbold';
+    src: url('font/yanonekaffeesatz-bold-webfont.eot');
+    src: url('font/yanonekaffeesatz-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/yanonekaffeesatz-bold-webfont.woff') format('woff'),
+         url('font/yanonekaffeesatz-bold-webfont.ttf') format('truetype'),
+         url('font/yanonekaffeesatz-bold-webfont.svg#kaffeesatzbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+/* 
+
+body {
+    font-family: 'kaffeesatzregular',Lucida Sans,Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: normal;
+}
+*/
+
+
+.faw {
+    font-family: 'FontAwesome';
+}
+
+
+#logo_title {
+    top: -5px;
+}
+
+
+
+UL#menu {
+    font-family: 'kaffeesatzregular',Lucida Sans,Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 1.5em;
+}
+
+UL#menu a:hover {
+    color: #F2A518;
+    font-size: 1.6em;
+}
+
+#menu-col-sx a:link, a:visited,
+.dati_utente_cons {
+    font-family: 'kaffeesatzregular',Lucida Sans,Verdana,Geneva,Arial,Helvetica,sans-serif;
+    color: #ffffff;
+    font-size: 1.4em;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: lowercase;
+    list-style-type: none;
+}
+
+
+.dati_utente_cons {
+	padding-left: 27px;
+	margin-left: 1px;
+	margin-top: -20px;
+
+}
+
+#icouser {
+    color: #ffffff;
+    font-weight: bold;
+    	font-size: 1.4em;
+}
+
+#menu-col-sx a:hover {
+    color: #F2A518;
+    /* font-size: 1.8em; */
+}
+
+
+UL#menu-col-sx LI {
+    list-style-type: none;
+    padding-bottom: 25px;
+}
+
+UL#menu-col-sx {
+    padding-left:10px;
+}
+
+
+
+/* top menu consilia  */
+
+#mainmenu {
+	position: relative;
+	margin-top: 10px;
+	padding: 0;
+	z-index: 1000;
+	width: 100%;
+	top: 0;
+}
+
+UL#menu {
+	height: 50px;
+	line-height: 50px;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0;
+}
+
+#menu {
+	background-color: #006EB9;
+	background-image: none;
+	/* 
+	background-position: center center;
+	background-repeat: repeat; 
+	*/
+	border: 0px;
+}
+
+
+/* spostamento bottoni sulla destra   */
+
+#esc_cons {
+right: 10px;
+position: absolute; 
+}
+
+#question_mark_cons {
+right: 100px;
+position: absolute; 
+}
+
+
+
+/* sostituzione icone bottoni testata */
+
+/*
+
+#home A {
+    background: url("../../img/home_cons.png") no-repeat scroll left center transparent;
+}
+
+#home A:hover {
+    background: url("../../img/home_cons_hover.png") no-repeat scroll left center transparent;
+}
+
+#profilo A {
+    background: url("../../img/profilo_cons.png") no-repeat scroll left center transparent;
+    display: block;
+    padding: 0 0 0 40px;
+}
+
+#profilo A:hover {
+    background: url("../../img/profilo_cons_hover.png") no-repeat scroll left center transparent;
+}
+
+#cronologia A {
+    background: url("../../img/cronologia_cons.png") no-repeat scroll left center transparent;
+    display: block;
+    padding: 0 0 0 40px;
+}
+
+#cronologia A:hover {
+    background: url("../../img/cronologia_cons_hover.png") no-repeat scroll left center transparent;
+}
+
+
+.unselectedquestion_mark A {
+    background: url("../../img/question_mark_cons.png") no-repeat scroll left center transparent;
+}
+
+#esc A {
+    background: url("../../img/esci_cons.png") no-repeat scroll left center transparent;
+}
+
+#esc A:hover {
+    background: url("../../img/esci_cons_hover.png") no-repeat scroll left center transparent;
+}
+
+*/
+
+
+
+
+
+
+
+
+/* bottoni menu di sx L. */
+
+/*
+
+#utente_cons .dati_utente_cons {
+    background: url("../../img/profilo_cons.png") no-repeat scroll left top transparent;
+    padding-left: 40px;
+    cursor: default;
+}
+
+#utente_cons A:hover {
+    background: url("../../img/profilo_cons_hover.png") no-repeat scroll left center transparent;
+}
+
+#indice_corso A {
+    background: url("../../img/indice_corso_cons.png") no-repeat scroll left center transparent;
+    padding-left: 40px;
+}
+
+#glossario A {
+    background: url("../../img/glossario_cons.png") no-repeat scroll left center transparent;
+    padding-left: 40px;
+}
+
+#riferimenti_normativa A {
+    background: url("../../img/rif_norm_cons.png") no-repeat scroll left center transparent;
+    padding-left: 40px;
+}
+
+#riferimenti_normativa A:hover {
+    background: url("../../img/rif_norm_cons_hover.png") no-repeat scroll left center transparent;
+}
+
+#print_cons A {
+    background: url("../../img/print_cons.png") no-repeat scroll left center transparent;
+    padding-left: 40px;
+}
+
+#print_cons A:hover {
+    background: url("../../img/print_cons_hover.png") no-repeat scroll left center transparent;
+}
+
+
+*/
+
+
+
+/* barra navigazione arancione   */
+
+#journey {
+	background-color: #F2A518;
+	background-image: none;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    padding: 0 0 0 10px;
+}
+
+
+
+
+/*
+START codice necessario per impostazione template a tre colonne L. 
+ */
+#colonna-1 {
+	float: left;
+	width: 200px;
+	background: url("../../img/sfondo_celeste.jpg") repeat scroll 0 0 #DCF1FE;
+	z-index: 100;
+}
+
+#colonna-2 {
+	float: left;
+	width: 100%;
+	margin-right: -400px;
+	background: url("../../img/sfondo_celeste.jpg") repeat scroll 0 0 #DCF1FE;
+	min-height: 585px;
+}
+
+#colonna-2 p {
+	margin-right: 400px;
+}
+
+#content_view {
+	min-height: 410px;
+	padding-top: 10px;
+	margin-right: 400px;
+	background: url("../../img/sfondo_celeste.jpg") repeat scroll 0 0 #DCF1FE;
+}
+
+.contentcontent_view {
+    background: url("../../img/sfondo_celeste.jpg") repeat scroll 0 0 #DCF1FE;
+    padding: 0;
+    }
+
+#colonna-3 {
+	float: right;
+	width: 200px;
+	background: url("../../img/sfondo_celeste.jpg") repeat scroll 0 0 #DCF1FE;
+}
+
+#corpo {
+	color: #000000;
+	background: url("../../img/sfondo-xxxcol-fisso-DX.png") right top	repeat-y;
+}
+
+#ausiliario {
+	overflow: hidden;
+	width: 100%;
+	background: #DCF1FE url("../../img/sfondo-xxxcol-fisso-SX.png") left 	top repeat-y ;
+}
+
+
+
+/*
+END codice necessario per impostazione template a tre colonne L. 
+ */
+
+ 
+ 
+ 
+/*
+START centratura box video L. 
+ */
+#colonna-4 {
+	float: left;
+	width: 20px;
+}
+
+#colonna-5 {
+	float: left;
+	width: 100%;
+	margin-right: -40px;
+	background: url("../../img/sfondo_celeste.jpg") repeat scroll 0 0 #DCF1FE;
+}
+
+#colonna-5 span {
+	margin-right: 40px;
+}
+
+#colonna-6 {
+	float: right;
+	width: 20px;
+}
+
+#corpo-inner {
+	color: #000000;
+	background: #DCF1FE url("../../img/sfondo-xxxcol-fisso-DX-inner.png")right top repeat-y;
+}
+
+#ausiliario-inner {
+	/* overflow: hidden; */
+	width: 100%;
+	background: url("../../img/sfondo-xxxcol-fisso-SX-inner.png") repeat scroll 0 0 #DCF1FE;
+}
+
+/*
+END centratura box video L. 
+ */
+ 
+ 
+#box-video {
+	margin: 0 auto;
+	width: 600px;
+	padding-top: 15px;
+}
+
+#freccia-video-sx {
+	position:relative;
+	top: -160px;
+	padding-right: 5px;
+	font-size: 25px;
+}
+
+#freccia-video-dx {
+	position:relative;
+	top: -160px;
+	padding-left: 5px;
+	font-size: 25px;
+}
+
+
+
+
+
+
+/*
+START Pannelli con bordi arrotondati colonna sinistra L. 
+Giorgio: border era #DCF1FE
+ */
+ 
+#pannello-sx {
+	border-radius: 0 30px 30px 0;
+	background-color: #006EB9;
+	width: 190px;
+	padding-top: 25px;
+	border-right: dashed 5px #fff;
+	border-top: dashed 5px #fff;
+	border-bottom: dashed 5px #fff;
+	min-height: 500px;
+	margin-top: 50px;
+
+}
+
+/*
+FINE Pannelli con bordi arrotondati colonna sinistra L. 
+ */
+
+/*
+START Pannelli con bordi arrotondati colonna destra L. 
+ */
+ 
+#pannello-dx {
+	border-radius: 30px 0 0 30px;
+	background-color: #FFFFFF;
+	width: 190px;
+	padding-top: 25px;
+	border-left: dashed 5px #006EB9;
+	border-top: dashed 5px #006EB9;
+	border-bottom: dashed 5px #006EB9;
+	min-height: 500px;
+	margin-top: 50px;
+	margin-left: 5px;
+
+}
+
+/*
+FINE Pannelli con bordi arrotondati colonna destra L. 
+ */
+
+
+
+
+
+
+
+
+
+
+/*
+ * Giorgio, inizio classi per i tab
+ */
+
+/* force a height so the tabs don't jump as content height changes */
+#tabs {
+	width: 100%;
+	display: none;
+	padding-top:10px;	
+	float: left;
+}
+
+#testo, #approfondimenti, #lospaevi { float: left; }
+
+.tabs-bottom .ui-tabs-nav li a {
+	outline-color: transparent;
+}
+
+#tabs p {
+	margin: 0;
+}
+/*
+ * Giorgio, fine classi per i tab
+ */
+
+ 
+ 
+ 
+/*
+  * Giorgio, classi per gli avatar
+  */
+ #avatarContainer
+ {
+ 	display: none;
+ }
+ 
+#avatarimg {
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;	
+}
+
+.avatar1 {
+	background: transparent url("../../img/avatars/avatar1.png") left top
+		no-repeat;
+}
+
+.avatar2 {
+	background: transparent url("../../img/avatars/avatar2.png") left top
+		no-repeat;
+}
+
+.avatar3 {
+	background: transparent url("../../img/avatars/avatar3.png") left top
+		no-repeat;
+}
+
+.avatar4 {
+	background: transparent url("../../img/avatars/avatar4.png") left top
+		no-repeat;
+}
+
+/*
+  * Giorgio, fine classi per gli avatar
+  */
+  
+  
+/*
+  * Giorgio, classe per il balloon
+  */
+#fakeBalloon { display: none; }
+#balloonArrow,
+#balloon {
+	width: 90%;
+	margin: 0 auto;
+}
+#balloonArrow {
+background: transparent url("../../img/balloonArrow.gif") left top
+		no-repeat;
+	-moz-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	margin: -30px 0 -2px 0;
+	height: 37px;
+	position: relative;
+}
+
+
+#balloon {
+	border: 2px solid black;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	background: #fff;
+}
+#balloon p {
+	padding: 0 10px 0 10px;
+}
+/*
+  * Giorgio, fine classe per il balloon
+  */
+  
+/*
+ * Giorgio, classe per i tab
+ */
+#tabs .ui-widget-header,#tabs li.ui-state-default {
+	border: none;
+	background: none;
+	font-family: 'kaffeesatzregular', Lucida Sans, Verdana, Geneva, Arial,
+		Helvetica, sans-serif;
+	font-size: 1.18em;
+}
+
+#tabs li.ui-state-default:first-child {
+	width: 28%;
+}
+
+#tabs li.ui-state-default:last-child {
+	width: 28%;
+}
+
+#tabs li.ui-state-default {
+	background: #fff; /* #006EB9; */
+	width: 41%;
+	margin: 0 5px 0 0;
+	min-height: 32px;
+}
+
+#tabs li.ui-state-default a {
+	color: #F2A518;
+	display: block;
+	float: none;
+	text-align: center;
+	padding: 0;
+}
+
+#tabs li.ui-state-default a:hover {
+    color: #006EB9;
+    font-size: 1.19em;
+}
+
+#tabs li.ui-state-active {
+	border-bottom: dashed 2px #006EB9;
+	color: #006EB9;
+	margin-bottom: 15px;
+}
+
+#tabs li.ui-state-active a,
+#tabs li.ui-state-active a:hover {
+    color: #006EB9;
+    /* font-size: 1em; */
+}
+
+#tabs .ui-tabs-nav {
+	padding: 0;
+	width: 95%;
+	margin: 0 auto;
+}
+/*
+ * Giorgio, fine classe per i tab
+ */
+
+  
+  /*
+  * Formattazione com tools footer
+  */
+  
+#com_toolscontent {
+    background: none repeat scroll 0 0 #F2A518;
+    color: #616161;
+    padding: 1px;
+}
+  
+  #com_tools .default_table {
+    color: #616161;
+}
+
+
+/* freccia fondo pagina */
+
+#freccia-top {
+    color: #616161;
+    font-size: 1.4em;
+}
+
+#freccia-top A {
+    color: #616161;
+    text-decoration: none;
+}
+
+#freccia-top A:hover {
+    color: #F2A518;
+}
+
+
+#footer a:visited {
+    color: #F2A518;
+}
+
+#balloon a:visited {
+    color: #F2A518;
+}
+
+/*
+ * Giorgio, frecce dx e sx
+ */
+#freccia-video-dx a,
+#freccia-video-sx a,
+#freccia-video-dx a:visited,
+#freccia-video-sx a:visited {
+  text-decoration: none;
+  color: #616161;
+}
+
+#freccia-video-dx a:hover,
+#freccia-video-sx a:hover {
+  color: #006EB9;
+}
+/*
+ * Giorgio, fine frecce dx e sx
+ */
+/*
+ * Giorgio, normal text content
+ */
+#textContent {
+  background: #fff;
+  min-height: 500px;
+  border: 1px solid #A6C9E2;
+-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;    
+	padding:10px;
+}
+#textContent p { margin: 0; }
+
+/*
+ * Giorgio, videogrid
+ */
+#videogrid {
+  width:100%;
+}
+
+#videogrid td:first-child,
+#videogrid td:last-child { width: 1%; }

@@ -1,5 +1,5 @@
 <div style="float:left">
-	<a href="#top"><img src="img/up.png" border="0" alt="top"></a>
+	<span id="freccia-top"><a href="#top"><i class="icon-upload icon-large"></i></a></span>
 </div>
 <div style="float:right">
 	<div class="copyright">ADA <i18n>&egrave; un software opensource rilasciato sotto licenza GPL</i18n>&nbsp;
