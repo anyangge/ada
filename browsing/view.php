@@ -214,7 +214,6 @@ $write_to_author_link = "<a href=\"$http_root_dir/comunica/send_message.php?dest
 
 //next node
 $next_node_link = '';
-
 if (!empty($next_node_id)){
 	$nextNodeAr =  $dh->get_node_info($next_node_id);
 	// level test
@@ -239,7 +238,7 @@ $banner = "";
 
 // printable version
 // @author giorgio 23/apr/2013
-$go_print = "<a href=\"print.php?id_node=" . $sess_id_node . "\" target=\"_blank\"><i class='icon-print icon-large'></i> "  . translateFN("stampa") . "</a>";
+$go_print = "<a href=\"print.php?id_node=" . $sess_id_node . "\" target=\"_blank\">"  . translateFN("stampa") . "</a>";
 
 
 // Links to other modules
@@ -508,51 +507,19 @@ switch ($op){
 		 * do not include the default jquery-ui theme but use the one imported
 		 * in the .css file instead
 		*/
-		if (!isset($userObj->template_family) || $userObj->template_family=='') $userObj->template_family = 'ada_blu';
+		if (!isset($userObj->template_family) || $userObj->template_family=='') $userObj->template_family = ADA_TEMPLATE_FAMILY;
 
 		if (!is_dir(ROOT_DIR.'/layout/'.$userObj->template_family.'/css/jquery-ui'))
 		{
 			$layout_dataAR['CSS_filename'] = array(
-					JQUERY_UI_CSS					
+					JQUERY_UI_CSS
 			);
 		} else $layout_dataAR['CSS_filename'] = array();
 
-		array_push ($layout_dataAR['CSS_filename'],ROOT_DIR.'/external/mediaplayer/flowplayer-5.4.3/skin/functional.css');
-		array_push ($layout_dataAR['CSS_filename'],ROOT_DIR.'/layout/'.$userObj->template_family.'/css/browsing/css/font-awesome.css');
+		array_push ($layout_dataAR['CSS_filename'],ROOT_DIR.'/external/mediaplayer/flowplayer-5.4.3/skin/minimalist.css');
 
-		if ($userObj  instanceof ADALoggableUser) 
-		{
-		   $optionsAr['onload_func'] = 'initDoc();';
-		   /*
-		    * Retrieve student's data
-		   */
-		   if ($userObj instanceof ADAUser) {
-			   $content_dataAr['nodes_count'] = History::get_total_nodes_for_course($sess_id_course);
-			   $content_dataAr['visited_nodes_count'] = History::get_student_visited_nodes_for_instance ($userObj->getId(), $sess_id_course, $sess_id_course_instance);
-			   $content_dataAr['visited_percent'] = sprintf("%.0f%%", (intval($content_dataAr['visited_nodes_count'])/intval($content_dataAr['nodes_count'])) * 100); 		   
-		   }
-		}
-		
-		/**
-		 * GIORGIO 11/set/2013
-		 * THIS IS A DIRTY TRICK TO HAVE PREV AND NEXT ARROWS WORKING IN THE DEMO!!!
-		 * *MUST* REMOVE IT IN PRODUCTION!!!
-		 */
-		$prevNextLink = array (
-			'109_0' => array ('prev'=>'', 'next'=>'109_8'),
-			'109_8' => array ('prev'=>'109_0', 'next'=>'109_9'),
-			'109_9' => array ('prev'=>'109_8', 'next'=>'')
-		);	
-		unset ($content_dataAr['go_prev']);
-		unset ($content_dataAr['go_next']);		
-		if ($prevNextLink[$nodeObj->id]['prev']!='') $content_dataAr['go_prev'] = "<a href=view.php?id_node=".$prevNextLink[$nodeObj->id]['prev']."><i class='icon-arrow-left icon-large'></i></a>";			
-		if ($prevNextLink[$nodeObj->id]['next']!='') $content_dataAr['go_next'] = "<a href=view.php?id_node=".$prevNextLink[$nodeObj->id]['next']."><i class='icon-arrow-right icon-large'></i></a>";
-		/**
-		 * GIORGIO 11/set/2013
-		 * DIRTY TRICK ENDS HERE!
-		 */
-		
 		ARE::render($layout_dataAR,$content_dataAr, null,$optionsAr);
+
 }
 
 
