@@ -736,29 +736,31 @@ class  Generic_Html extends Output
         }
 
         
-        /* steve 31/03/09
+        /* steve 31/03/09, giorgio 16/10/2013
          *
-         * add alternate CSS for non standard browsers, namely IE 6 */
+         * add alternate CSS for non standard browsers, namely IE 6 and 7 and...*/
 
-        $cond_com_begin = "\n<!--[if IE 6]>\n";
-        $cond_com_end = "<![endif]-->\n";
-
-        //  if there is the extension we strip it off
-        if (strstr($stylesheet,'.css')){
-          $stylesheet_name = substr($stylesheet,0,-4);
-          $ie6_stylesheet =  $stylesheet_name."_ie6";
-        } else {
-          $ie6_stylesheet =  $stylesheet."_ie6";
-        }
-        $ie6_stylesheet =  $ie6_stylesheet.".css";
-        // path
-        if (!stristr($ie6_stylesheet,'css/'))
-        $ie6_stylesheet =  $stylesheetpath.$ie6_stylesheet; // if there is no path, we add it
-
-        if (file_exists($ie6_stylesheet)){
-            $ie6_stylesheet = str_replace($root_dir,$http_root_dir,$ie6_stylesheet);
-          $html_css_code .= $cond_com_begin."<link rel=\"stylesheet\" href=\"$ie6_stylesheet\" type=\"text/css\" media=\"screen\">\n".$cond_com_end;
-        }
+        for($ie_version=6; $ie_version<=7; $ie_version++)
+        {        
+	        $cond_com_begin = "\n<!--[if IE ".$ie_version."]>\n";
+	        $cond_com_end = "<![endif]-->\n";
+	
+	        //  if there is the extension we strip it off
+	        if (strstr($stylesheet,'.css')){
+	          $stylesheet_name = substr($stylesheet,0,-4);
+	          $ie_stylesheet =  $stylesheet_name."_ie".$ie_version;
+	        } else {
+	          $ie_stylesheet =  $stylesheet."_ie".$ie_version;
+	        }
+	        $ie_stylesheet =  $ie_stylesheet.".css";
+	        // path
+	        if (!stristr($ie_stylesheet,'css/'))
+	        $ie_stylesheet =  $stylesheetpath.$ie_stylesheet; // if there is no path, we add it
+	        
+	        if (file_exists(str_replace($http_root_dir,$root_dir,$ie_stylesheet))){
+	          $html_css_code .= $cond_com_begin."<link rel=\"stylesheet\" href=\"$ie_stylesheet\" type=\"text/css\" media=\"screen\">\n".$cond_com_end;
+	        }
+        } // end for $ie_version
         /* end mod	*/
 
       }

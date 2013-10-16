@@ -326,3 +326,9 @@ define('JQUERY_MASKEDINPUT',	ROOT_DIR.'/js/include/jquery/maskedinput/jquery.mas
 define('JQUERY_DATATABLE_DATE',	ROOT_DIR.'/js/include/jquery/dataTables/dateSortPlugin.js');
 define('JQUERY_DATATABLE_CSS',	ROOT_DIR.'/js/include/jquery/dataTables/jquery.dataTables.css');
 define('JQUERY_NO_CONFLICT',	ROOT_DIR.'/js/include/jquery.noConflict.js');
+
+/**
+ * giorgio 16/ott/2013 added font-awesome css location
+ */
+
+define('FONTAWESOME_DIR',	    ROOT_DIR.'/layout/font-awesome');
