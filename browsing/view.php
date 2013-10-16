@@ -518,7 +518,6 @@ switch ($op){
 		} else $layout_dataAR['CSS_filename'] = array();
 
 		array_push ($layout_dataAR['CSS_filename'],ROOT_DIR.'/external/mediaplayer/flowplayer-5.4.3/skin/functional.css');
-		array_push ($layout_dataAR['CSS_filename'],ROOT_DIR.'/layout/'.$userObj->template_family.'/css/browsing/css/font-awesome.css');
 
 		if ($userObj  instanceof ADALoggableUser) 
 		{
