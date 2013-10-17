@@ -35,14 +35,32 @@ define('ADA_DEFAULT_TESTER_DB_USER',  'root');
 define('ADA_DEFAULT_TESTER_DB_PASS',  '');
 define('ADA_DEFAULT_TESTER_DB_HOST',  'localhost');
 
+if (MULTIPROVIDER) {
+	/**
+	 * In a single provider environment, each one
+	 * shall have these set in its own config file
+	 */
+	
+	/**
+	 * ID of the public course to get the latest news
+	 */
+	define ('PUBLIC_COURSE_ID_FOR_NEWS', 1);
+	/**
+	 * How many news to get from the above mentioned course
+	 */
+	define ('NEWS_COUNT', 3);
+}
+
 /**
- * ID of the public course to get the latest news
+ * URL
+ * DO NOT REMOVE the trailing // *js_import*
  */
-define ('PUBLIC_COURSE_ID_FOR_NEWS', 1);
+if (!defined('HTTP_ROOT_DIR')) define('HTTP_ROOT_DIR','http://localhost/ada20'); // *js_import*
+
 /**
- * How many news to get from the above mentioned course
- */
-define ('NEWS_COUNT', 3);
+ * portal name string - displayed in window titlebar
+*/
+if (!defined('PORTAL_NAME')) define('PORTAL_NAME','ADA 2.1 local git');
 
 
 /**
@@ -115,15 +133,16 @@ define('DOC_VIEWING_MODE',   2);
 define('MAX_WIDTH', "200");
 define('MAX_HEIGHT', "200");
 
+/*
+ * size of Avatar image reduction
+ */
+define('AVATAR_MAX_WIDTH', "600");
+define('AVATAR_MAX_HEIGHT', "500");
+
 /**
  * Default admin mail address
  */
 define('ADA_ADMIN_MAIL_ADDRESS','graffio@lynxlab.com');
-
-/**
- *
- */
-define('PORTAL_NAME','ADA 2.1');
 
 /**
  * ADA version
@@ -134,7 +153,6 @@ define('ADA_VERSION','2.1alpha0');
  * URL
  * DO NOT REMOVE the trailing // *js_import*
  */
-define('HTTP_ROOT_DIR','http://localhost/ada20'); // *js_import*
 define('MODULES_DIR',ROOT_DIR.'/modules'); // *js_import*
 
 /**
@@ -176,6 +194,11 @@ define('ADA_DEFAULT_EMAIL_FOOTER', 'This message has been sent to you by ADA. Fo
  * default author upload path
  */
 define('ADA_UPLOAD_PATH', ROOT_DIR.'/upload_file/uploaded_files/');
+
+/**
+ * default HTTP upload path for each user
+ */
+define('HTTP_UPLOAD_PATH', HTTP_ROOT_DIR.'/upload_file/uploaded_files/');
 
 /**
  * default tutor upload path
@@ -306,6 +329,7 @@ $ADA_MIME_TYPE["audio/x-aiff"]['permission'] = _GO;
 $ADA_MIME_TYPE["image/gif"]['permission'] = _GO;
 $ADA_MIME_TYPE["image/jpeg"]['permission'] = _GO;
 $ADA_MIME_TYPE["image/pjpeg"]['permission'] = _GO;
+$ADA_MIME_TYPE["image/png"]['permission'] = _GO;
 $ADA_MIME_TYPE["image/x-png"]['permission'] = _GO;
 $ADA_MIME_TYPE["text/html"]['permission'] = _GO;
 $ADA_MIME_TYPE["text/css"]['permission'] = _GO;

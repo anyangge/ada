@@ -28,6 +28,30 @@ function session_controlFN($neededObjAr=array(), $allowedUsersAr=array(), $track
      */
       ADALogger::log('session failed to start');
   }
+  
+  /**
+   * giorgio 11/ago/2013
+   * if it's not multiprovider and we're asking for index page,
+   * sets the selected provider by detecting it from the filename that's executing
+   */
+   if (!MULTIPROVIDER) {
+   	 
+	list($client) = explode ('.',preg_replace('/(http[s]?:\/\/)/', '', $_SERVER['SERVER_NAME']));
+	
+	if (isset($client) && !empty ($client) && is_dir(ROOT_DIR.'/clients/'.$client))
+  	{	  		
+  		// $_SESSION['sess_user_provider'] = $client;
+  		$GLOBALS['user_provider'] = $client;
+  		// other session vars per provider may go here...  		  		
+  	}
+  	else unset ($GLOBALS['user_provider']);
+//   	if (isset($_SESSION['sess_user_provider']) && !empty($_SESSION['sess_user_provider']))
+//   		$GLOBALS['user_provider'] = $_SESSION['sess_user_provider'];
+  	// if it's not set and its value is not equal to the new passed one, set a cookie that shall expire in one year
+//   	if (isset($GLOBALS['user_provider']) && $_COOKIE['ada_provider']!=$GLOBALS['ada_provider'])
+//   		setcookie('ada_provider',$GLOBALS['user_provider'],+time()+ 86400 *365 ,'/');
+  } // end if !MULTIPROVIDER
+  
   /*
    * Navigation history
    */
@@ -262,7 +286,19 @@ function parameter_controlFN($neededObjAr=array(), $allowedUsersAr=array()) {
    * ADA tester data handler
    * Data validation on $sess_selected_tester is performed by MultiPort::getDSN()
    */
-  $sess_selected_tester = $_SESSION['sess_selected_tester'];
+  /**
+   * giorgio 12/ago/2013
+   * set selected tester if it's not a multiprovider environment
+   */
+  if (!MULTIPROVIDER && isset($GLOBALS['user_provider']))
+  {
+  	$sess_selected_tester = $GLOBALS['user_provider'];
+  }
+  else
+  {
+  	$sess_selected_tester = $_SESSION['sess_selected_tester'];
+  }
+  
   //$dh = AMA_DataHandler::instance(MultiPort::getDSN($sess_selected_tester));
   
   $sess_selected_tester_dsn = MultiPort::getDSN($sess_selected_tester);
@@ -313,7 +349,7 @@ function parameter_controlFN($neededObjAr=array(), $allowedUsersAr=array()) {
     if ($nodeObj instanceof Node){
       $node_id_courseAr = explode ('_',$nodeObj->id);
       $node_id_course = $node_id_courseAr[0];   
-      $sess_courseObj = read_course($node_id_course);
+      $sess_courseObj = read_course($node_id_course);  
       
       if (ADA_Error::isError($sess_courseObj)) {
        if($sess_userObj instanceof ADAGuest) {
@@ -325,6 +361,11 @@ function parameter_controlFN($neededObjAr=array(), $allowedUsersAr=array()) {
         }
         $sess_courseObj->handleError();
       }
+      else if ($sess_userObj instanceof ADAGuest  && $id_course!=PUBLIC_COURSE_ID_FOR_NEWS) {
+      	header('Location: '.$sess_userObj->getHomePage());
+      	exit();
+      }
+      
       $_SESSION['sess_courseObj'] = $sess_courseObj;
       $_SESSION['sess_id_course'] = $node_id_course;
     }    
@@ -369,9 +410,9 @@ function parameter_controlFN($neededObjAr=array(), $allowedUsersAr=array()) {
      * dato che non ce ne sono.
      */
 //      var_dump(array($sess_id_course_instance,$id_course_instance,MultiPort::isUserBrowsingThePublicTester()));
-    if(!MultiPort::isUserBrowsingThePublicTester()) {
+    if(!MultiPort::isUserBrowsingThePublicTester() && $id_course!=PUBLIC_COURSE_ID_FOR_NEWS) {
       $id_course_instance      = DataValidator::is_uinteger($_REQUEST['id_course_instance']/*$GLOBALS['id_course_instance']*/); // FIXME: qui ci va $_REQUEST['id_course_instance']
-      $sess_id_course_instance = DataValidator::is_uinteger($_SESSION['sess_id_course_instance']);
+      $sess_id_course_instance = DataValidator::is_uinteger($_SESSION['sess_id_course_instance']);      
       if($id_course_instance !== FALSE) {
         $course_instanceObj = read_course_instance_from_DB($id_course_instance);
         if (ADA_Error::isError($course_instanceObj)) {

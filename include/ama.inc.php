@@ -1101,7 +1101,7 @@ class AMA_Common_DataHandler extends Abstract_AMA_DataHandler {
         // get a row from table UTENTE
         $query = "select nome, cognome, tipo, e_mail AS email, telefono, username, layout, ".
                 "indirizzo, citta, provincia, nazione, codice_fiscale, birthdate, sesso, ".
-                "telefono, stato, lingua, timezone from utente where id_utente=$id";
+                "telefono, stato, lingua, timezone, cap, matricola, avatar from utente where id_utente=$id";
         $res_ar =  $db->getRow($query, NULL, AMA_FETCH_ASSOC);
         if (AMA_DB::isError($res_ar)) {
             return new AMA_Error(AMA_ERR_GET);
@@ -1374,7 +1374,7 @@ class AMA_Common_DataHandler extends Abstract_AMA_DataHandler {
         if(empty($user_ha['password'])) {
             $update_user_sql = 'UPDATE utente SET nome=?, cognome=?, e_mail=?, telefono=?, layout=?, '
                     . 'indirizzo=?, citta=?, provincia=?, nazione=?, codice_fiscale=?, birthdate=?, sesso=?, '
-                    . 'telefono=?, stato=?, lingua=?, timezone=? WHERE id_utente=?';
+                    . 'telefono=?, stato=?, lingua=?, timezone=?, cap=?, matricola=?, avatar=? WHERE id_utente=?';
 
             $valuesAr = array(
                     $user_ha['nome'],
@@ -1393,13 +1393,16 @@ class AMA_Common_DataHandler extends Abstract_AMA_DataHandler {
                     $user_ha['stato'],
                     $user_ha['lingua'],
                     $user_ha['timezone'],
+                    $user_ha['cap'],
+                    $user_ha['matricola'],
+                    $user_ha['avatar'],
                     $id
             );
         }
         else {
             $update_user_sql = 'UPDATE utente SET nome=?, cognome=?, e_mail=?, password=?, telefono=?, layout=?, '
                     . 'indirizzo=?, citta=?, provincia=?, nazione=?, codice_fiscale=?, birthdate=?, sesso=?, '
-                    . 'telefono=?, stato=?, lingua=?, timezone=? WHERE id_utente=?';
+                    . 'telefono=?, stato=?, lingua=?, timezone=?, cap=?, matricola=?, avatar=? WHERE id_utente=?';
 
             $valuesAr = array(
                     $user_ha['nome'],
@@ -1419,6 +1422,9 @@ class AMA_Common_DataHandler extends Abstract_AMA_DataHandler {
                     $user_ha['stato'],
                     $user_ha['lingua'],
                     $user_ha['timezone'],
+                    $user_ha['cap'],
+                    $user_ha['matricola'],
+                    $user_ha['avatar'],
                     $id
             );
         }
@@ -2139,12 +2145,17 @@ class AMA_Common_DataHandler extends Abstract_AMA_DataHandler {
     }
 
 
-
-    public function get_published_courses() {
+	/**
+	 * giorgio 13/ago/2013
+	 * added id_tester parameter that is passed if it's not a multiprovider environment
+	 */    
+    public function get_published_courses($id_tester=null) {
         $db =& $this->getConnection();
         if (AMA_DB::isError($db)) return $db;
 
-        $courses_sql = 'SELECT S.id_servizio, S.nome, S.descrizione, S.durata_servizio FROM servizio AS S, (SELECT distinct(id_servizio) FROM servizio_tester) AS ST WHERE S.id_servizio = ST.id_servizio';
+        $courses_sql = 'SELECT S.id_servizio, S.nome, S.descrizione, S.durata_servizio FROM servizio AS S, (SELECT distinct(id_servizio) FROM servizio_tester';
+        if (!is_null($id_tester) && intval($id_tester)>0) $courses_sql .= ' WHERE id_tester='.intval($id_tester); 
+        $courses_sql .= ') AS ST WHERE S.id_servizio = ST.id_servizio';
 
         $result = $db->getAll($courses_sql, null, AMA_FETCH_ASSOC);
         if(AMA_DB::isError($result)) {
@@ -3128,13 +3139,18 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
                     $old_values_ha['codice_fiscale'],
                     AMA_Common_DataHandler::date_to_ts($old_values_ha['birthdate']),
                     $old_values_ha['sesso'],
-                    $old_values_ha['telefono'],
+                    $old_values_ha['stato'],
+                    $old_values_ha['lingua'],
+                    $old_values_ha['timezone'],
+                    $old_values_ha['cap'],
+                    $old_values_ha['matricola'],
+                    $old_values_ha['avatar'],
                     $id
             );
 
             $update_user_sql = 'UPDATE utente SET nome=?, cognome=?, e_mail=?, telefono=?, password=?, layout=?, '
                     . 'indirizzo=?, citta=?, provincia=?, nazione=?, codice_fiscale=?, birthdate=?, sesso=?, '
-                    . 'telefono=? WHERE id_utente=?';
+                    . 'stato=?, lingua=?, timezone=?, cap=?, matricola=?, avatar=? WHERE id_utente=?';
 
             $result = $this->executeCriticalPrepared($update_user_sql, $valuesAr);
             // qui andrebbe differenziato il tipo di errore
@@ -3179,7 +3195,7 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
         if(empty($user_ha['password'])) {
             $update_user_sql = 'UPDATE utente SET nome=?, cognome=?, e_mail=?, telefono=?, layout=?, '
                     . 'indirizzo=?, citta=?, provincia=?, nazione=?, codice_fiscale=?, birthdate=?, sesso=?, '
-                    . 'telefono=?, stato=?, lingua=?, timezone=? WHERE id_utente=?';
+                    . 'telefono=?, stato=?, lingua=?, timezone=?, cap=?, matricola=?, avatar=? WHERE id_utente=?';
 
             $valuesAr = array(
                     $user_ha['nome'],
@@ -3198,13 +3214,16 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
                     $user_ha['stato'],
                     $user_ha['lingua'],
                     $user_ha['timezone'],
+                    $user_ha['cap'],
+                    $user_ha['matricola'],
+                    $user_ha['avatar'],
                     $id
             );
         }
         else {
             $update_user_sql = 'UPDATE utente SET nome=?, cognome=?, e_mail=?, password=?, telefono=?, layout=?, '
                     . 'indirizzo=?, citta=?, provincia=?, nazione=?, codice_fiscale=?, birthdate=?, sesso=?, '
-                    . 'telefono=?,stato=?, lingua=?, timezone=? WHERE id_utente=?';
+                    . 'telefono=?,stato=?, lingua=?, timezone=?, cap=?, matricola=?, avatar=? WHERE id_utente=?';
 
             $valuesAr = array(
                     $user_ha['nome'],
@@ -3224,6 +3243,9 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
                     $user_ha['stato'],
                     $user_ha['lingua'],
                     $user_ha['timezone'],
+                    $user_ha['cap'],
+                    $user_ha['matricola'],
+                    $user_ha['avatar'],
                     $id
             );
         }
@@ -4111,7 +4133,7 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
 
 		$status_Ar = array(ADA_STATUS_SUBSCRIBED,ADA_STATUS_REMOVED,ADA_STATUS_VISITOR,ADA_SERVICE_SUBSCRIPTION_STATUS_COMPLETED);
 
-        $sql = 'SELECT U.id_utente, U.username, U.tipo, U.nome, U.cognome, I.status FROM utente AS U, iscrizioni AS I '
+        $sql = 'SELECT U.id_utente, U.username, U.tipo, U.nome, U.cognome, U.avatar I.status FROM utente AS U, iscrizioni AS I '
              . ' WHERE I.id_istanza_corso ='.$id_course_instance
              . ' AND I.status IN ('.implode(',',$status_Ar).')'
              . ' AND U.id_utente = I.id_utente_studente';
@@ -5072,6 +5094,35 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
         return true;
     }
 
+    
+  /**
+   * Get all informations about the users subscribed the course instances
+   *
+   * @access public
+   *
+   * @param $id the course's id
+   *
+   * @return an array containing all the informations about users
+   *   corso                - course model the instance is originated from
+   *
+   */
+  public function course_users_instance_get($id) {
+        ADALogger::log_db("course_users_instance_get (id_corso:$id)");
+
+        $db =& $this->getConnection();
+        if ( AMA_DB::isError( $db ) ) return $db;
+
+        $sql = 'SELECT distinct U.id_utente, U.nome, U.cognome, U.username, IC.id_corso, I.id_utente_studente, I.id_istanza_corso, IC.data_inizio, I.status FROM
+        iscrizioni AS I, istanza_corso AS IC, utente AS U
+        WHERE IC.id_corso = '.$id.' AND I.id_istanza_corso = IC.id_istanza_corso AND U.id_utente = I.id_utente_studente order by U.cognome';
+        $result = $db->getAll($sql, NULL, AMA_FETCH_ASSOC);
+        if (AMA_DB::isError($result)) {
+          return new AMA_Error(AMA_ERR_GET);
+        }
+        return $result;
+  }
+
+    
     /**
      * Get all informations about a course instance
      *
@@ -9914,12 +9965,17 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
                     $old_values_ha['codice_fiscale'],
                     AMA_Common_DataHandler::date_to_ts($old_values_ha['birthdate']),
                     $old_values_ha['sesso'],
-                    $old_values_ha['telefono'],
+                    $old_values_ha['stato'],
+                    $old_values_ha['lingua'],
+                    $old_values_ha['timezone'],
+                    $old_values_ha['cap'],
+                    $old_values_ha['matricola'],
+                    $old_values_ha['avatar'],
                     $id
             );
             $update_user_sql = 'UPDATE utente SET nome=?, cognome=?, e_mail=?, telefono=?, password=?, layout=?, '
                     . 'indirizzo=?, citta=?, provincia=?, nazione=?, codice_fiscale=?, birthdate=?, sesso=?, '
-                    . 'telefono=? WHERE id_utente=?';
+                    . 'stato=?, lingua=?,timezone=?,cap=?,matricola=?,avatar=? WHERE id_utente=?';
 
             $result = $this->executeCriticalPrepared($update_user_sql, $valuesAr);
             // qui andrebbe differenziato il tipo di errore
@@ -10062,6 +10118,55 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
         // no tutor found
         return false;
     }
+    
+  /**
+   * get the tutor(s) complete informations of the course_instance
+   *
+   * @access public
+   *
+   * @param $id_tutor    - tutor id
+   * @param $id_instance    - course instance id
+   * @param $number    - mode: a single tutor  or array
+   *
+   * @return an error if something goes wrong, an array if $number >=1, an integer else
+   */
+  public function course_instance_tutor_info_get($id_instance,$number=0){
+    $db =& $this->getConnection();
+    if ( AMA_DB::isError( $db ) ) return $db;
+
+    $sql =  "select TS.id_utente_tutor, U.nome, U.cognome, U.username from tutor_studenti AS TS, utente AS U where id_istanza_corso=$id_instance AND TS.id_utente_tutor=U.id_utente";
+    if ($number==1) {
+      $res =  $db->getRow($sql);
+    }
+    else {
+      $res =  $db->getAll($sql, NULL, AMA_FETCH_ASSOC);
+    }
+    if(AMA_DB::isError($res)) {
+      return new AMA_Error(AMA_ERR_GET);
+    }
+    return $res;
+    /*
+    if ((!empty($res)) && (!AMA_dataHandler::isError($res))){
+      if ($number==1){
+        $id_utente_tutor = $res[0];
+        return $id_utente_tutor;
+      }
+      else {
+        $tutorAr = array();
+        foreach ($res as $tutor) {
+          $id_utente_tutor = $tutor[0];
+          $tutorAr[] = $id_utente_tutor;
+        }
+        return $tutorAr;
+      }
+    }
+     *
+     */
+
+    // no tutor found
+    return false;
+  }
+
 
     /**
      * get the course_instance of the tutor
@@ -10429,8 +10534,8 @@ public function get_updates_nodes($userObj, $pointer)
 
         $add_user_sql = 'INSERT INTO utente(id_utente,nome,cognome,tipo,e_mail,username,password,layout,
                                indirizzo,citta,provincia,nazione,codice_fiscale,birthdate,sesso,
-                               telefono,stato,lingua,timezone)
-                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+                               telefono,stato,lingua,timezone,cap,matricola,avatar)
+                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
         $values = array(
                 $user_dataAr['id_utente'],
@@ -10452,7 +10557,10 @@ public function get_updates_nodes($userObj, $pointer)
                 $this->or_null($user_dataAr['telefono']),
                 $user_dataAr['stato'],
                 $user_dataAr['lingua'],
-                $user_dataAr['timezone']
+                $user_dataAr['timezone'],
+                $user_dataAr['cap'],
+                $user_dataAr['matricola'],
+                $user_dataAr['avatar']
         );
         /*
      * Adds the user
@@ -10501,7 +10609,7 @@ public function get_updates_nodes($userObj, $pointer)
         // get a row from table UTENTE
         $query = "select nome, cognome, tipo, e_mail AS email, telefono, username, layout, ".
                 "indirizzo, citta, provincia, nazione, codice_fiscale, birthdate, sesso, ".
-                "telefono, stato, lingua, timezone from utente where id_utente=$id";
+                "telefono, stato, lingua, timezone, cap, matricola, avatar  from utente where id_utente=$id";
         $res_ar =  $db->getRow($query, NULL, AMA_FETCH_ASSOC);
         if (AMA_DB::isError($res_ar)) {
             return new AMA_Error(AMA_ERR_GET);
@@ -10862,7 +10970,7 @@ public function get_updates_nodes($userObj, $pointer)
         $db =& $this->getConnection();
         if (AMA_DB::isError($db)) return $db;
 
-        $sql = "SELECT U.tipo, U.username FROM utente AS U, iscrizioni AS I, tutor_studenti AS T
+        $sql = "SELECT U.tipo, U.username, U.name, U.cognome, U.avatar FROM utente AS U, iscrizioni AS I, tutor_studenti AS T
     		 WHERE I.id_utente_studente=$id_student AND T.id_istanza_corso = I.id_istanza_corso
     		 AND U.id_utente = T.id_utente_tutor";
         $result = $db->getAll($sql, NULL, AMA_FETCH_ASSOC);

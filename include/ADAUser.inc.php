@@ -153,6 +153,38 @@ class ADAUser extends ADAAbstractUser
 	public function hasExtra() {
 		return $this->_hasExtra;
 	}
+	
+	/**
+	 * getDefaultTester implementation:
+	 * - if it's not a multiprovider environment, return the user selected provider
+	 * - else return parent's method
+	 * 
+	 * @see ADAAbstractUser::getDefaultTester()
+	 */
+	public function getDefaultTester() {
+		if(!MULTIPROVIDER) {	
+					
+			$candidate = null;		
+			/**
+			 * the default tester is the only one in which the user is listed
+			 * that is NOT the public tester. So let's take the list of all
+			 * providers the user is registered into, remove the public one and
+			 * if what is left has only one element, this is the default tester.
+			 * Else we cannot tell for certain the default testers and return null.
+			 */
+			$testersArr = $this->getTesters();
+			if (!empty($testersArr))
+			{					
+				$testersArr = array_values(array_diff ($testersArr, array(ADA_PUBLIC_TESTER)));
+				if (count($testersArr)===1) $candidate = $testersArr[0];
+			}			
+
+			$tester = DataValidator::validate_testername($candidate,MULTIPROVIDER);
+			if ($tester!==false) return $tester;
+			else return NULL;
+		}
+		else return parent::getDefaultTester();
+	}
 }
 
 ?>

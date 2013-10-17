@@ -48,28 +48,30 @@ abstract class FForm
      * Fills the controls in the form with contents of $_POST.
      */
     public final function fillWithPostData() {
-        foreach($this->_controls as $control) {
-            if(isset($_POST[$control->getId()]) &&!($control instanceof FCFieldset) ) {
-                $control->withData($_POST[$control->getId()]);
-            }
-            else if ($control instanceof FCFieldset)
-            {            	
-            	foreach ($control->getControls() as $field)
-            	{            		
-            		if (isset($_POST[$field->getId()]))
-            		{
-            			$field->withData($_POST[$field->getId()]);
-            		}
-            	}
-            }
-        }
+    		$this->fillWithArrayData($_POST);
+//         foreach($this->_controls as $control) {
+//             if(isset($_POST[$control->getId()]) &&!($control instanceof FCFieldset) ) {
+//                 $control->withData($_POST[$control->getId()]);
+//             }
+//             else if ($control instanceof FCFieldset)
+//             {            	
+//             	foreach ($control->getControls() as $field)
+//             	{            		
+//             		if (isset($_POST[$field->getId()]))
+//             		{
+//             			$field->withData($_POST[$field->getId()]);
+//             		}
+//             	}
+//             }
+//         }
     }
     /**
      * Fills the controls in the form with contents of the given array.
      */
     public final function fillWithArrayData($formData = array()) {
         foreach($this->_controls as $control) {
-            if(isset($formData[$control->getId()]) && !($control instanceof FCFieldset)) {
+            if(isset($formData[$control->getId()]) && (!($control instanceof FCFieldset)))  
+            {
                 $control->withData($formData[$control->getId()]);
             }
             else if ($control instanceof FCFieldset)
@@ -80,12 +82,12 @@ abstract class FForm
             		{
             			$field->withData($formData[$field->getId()]);
             		}
-            			
             	}
             	
             }
         }
     }
+    
     /**
      * Iterates over each control in the form and uses FormValidator to validate
      * it. If all the controls in the form are valid, the form is valid.
@@ -363,7 +365,7 @@ abstract class FForm
    <div id="error_form" class="hide_error form">
 		'.translateFN('Sono presenti errori nel form, si prega di correggere le voci evidenziate in rosso').'
    </div>
-   <p class="'.FormControl::DEFAULT_CLASS.' submit"><input class="'.FormControl::DEFAULT_CLASS.'" type="submit" id="submit" name="submit" onClick="return validate_'.$this->_name.'();"'.$this->submitValue().'/></p>
+   <p class="'.FormControl::DEFAULT_CLASS.' submit"><input class="'.FormControl::DEFAULT_CLASS.'" type="submit" id="submit_"'.$this->_name.' name="submit_"'.$this->_name. ' onClick="return validate_'.$this->_name.'();"'.$this->submitValue().'/></p>
 </form>
 </div>';
 

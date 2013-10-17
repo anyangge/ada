@@ -51,6 +51,7 @@ include_once ROOT_DIR.'/browsing/include/browsing_functions.inc.php';
 
 $self =  'index';
 $docDir = '/docs/';
+$helpPath = '';
 
 if (isset($_GET['type'])){
   $fileext = $_GET['type'];
@@ -95,7 +96,7 @@ if (isset($_GET['arg'])){
 $help_file = ROOT_DIR.$docDir.$short_help_file_name;
 
 if ($fileext == 'html'){
-  header('Location: '. HTTP_ROOT_DIR . "/browsing/external_link.php?file=$short_help_file_name");
+  header('Location: '. HTTP_ROOT_DIR . $helpPath ."/browsing/external_link.php?file=$short_help_file_name");
   exit();
 
 } elseif ($fileext == 'pdf'){

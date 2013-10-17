@@ -327,8 +327,11 @@ define('JQUERY_DATATABLE_DATE',	ROOT_DIR.'/js/include/jquery/dataTables/dateSort
 define('JQUERY_DATATABLE_CSS',	ROOT_DIR.'/js/include/jquery/dataTables/jquery.dataTables.css');
 define('JQUERY_NO_CONFLICT',	ROOT_DIR.'/js/include/jquery.noConflict.js');
 
+
 /**
  * giorgio 16/ott/2013 added font-awesome css location
  */
 
 define('FONTAWESOME_DIR',	    ROOT_DIR.'/layout/font-awesome');
+define('JQUERY_NIVOSLIDER',		ROOT_DIR.'/js/include/jquery/nivo-slider/jquery.nivo.slider.pack.js');
+define('JQUERY_NIVOSLIDER_CSS', ROOT_DIR.'/js/include/jquery/nivo-slider/nivo-slider.css');

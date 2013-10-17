@@ -214,7 +214,6 @@ $write_to_author_link = "<a href=\"$http_root_dir/comunica/send_message.php?dest
 
 //next node
 $next_node_link = '';
-
 if (!empty($next_node_id)){
 	$nextNodeAr =  $dh->get_node_info($next_node_id);
 	// level test
@@ -499,6 +498,7 @@ switch ($op){
 		$layout_dataAR['JS_filename'] = array(
 				JQUERY,
 				JQUERY_UI,
+				JQUERY_NIVOSLIDER,
 				JQUERY_NO_CONFLICT,
 				ROOT_DIR. '/external/mediaplayer/flowplayer-5.4.3/flowplayer.js'
 		);		
@@ -508,7 +508,7 @@ switch ($op){
 		 * do not include the default jquery-ui theme but use the one imported
 		 * in the .css file instead
 		*/
-		if (!isset($userObj->template_family) || $userObj->template_family=='') $userObj->template_family = 'ada_blu';
+		if (!isset($userObj->template_family) || $userObj->template_family=='') $userObj->template_family = ADA_TEMPLATE_FAMILY;
 
 		if (!is_dir(ROOT_DIR.'/layout/'.$userObj->template_family.'/css/jquery-ui'))
 		{
