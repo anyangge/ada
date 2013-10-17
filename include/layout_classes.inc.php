@@ -253,6 +253,15 @@ class CSS {
                 $CSS_files[] = $http_root_dir."/courses/media/$node_author_id/css/$node_course_id.css";
             }
         }
+        
+        /*
+         * giorgio, always include font-awesome css if it's defined
+         */
+        if (defined('FONTAWESOME_DIR'))
+        {
+        	$fontAwesomeCSS = FONTAWESOME_DIR.'/css/font-awesome.css';
+        	if (is_file($fontAwesomeCSS)) $CSS_files[] = $fontAwesomeCSS;
+        }
 
         $this->CSS_filename = implode(';',$CSS_files);
         $this->CSS_dir = $CSS_dir;
