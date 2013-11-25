@@ -67,12 +67,12 @@
                     </a>
                 </li>
 				-->
-                <li id="question_mark_cons" class="unselectedquestion_mark_cons" onClick="toggleElementVisibility('submenu_question_mark','up'); return false;">
+                <li id="question_mark" class="unselectedquestion_mark" onClick="toggleElementVisibility('submenu_question_mark','up'); return false;">
                     <a>
                         <i class="icon-question icon-large"></i> <i18n>Help</i18n>
                     </a>
                 </li>
-                <li id="esc_cons">
+                <li id="esc">
                     <a href="../index.php">
                         <i class="icon-off icon-large"></i> <i18n>esci</i18n>
                     </a>
@@ -378,7 +378,7 @@
                 </li>
 				<li id="riferimenti_normativa">
                     <a href="view.php?id_node=109_10">
-                        <i class="icon-folder-open icon-large"></i> <i18n>riferimenti normativa</i18n>
+                        <i class="icon-folder-open icon-large"></i> <i18n>normativa</i18n>
                     </a>
                 </li>
 				<li id="print_cons">

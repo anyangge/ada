@@ -101,31 +101,31 @@
         <div id="mainmenu">
             <ul id="menu">
                 <li id="home"> <a href="tutor.php">
-                        <i18n>home</i18n>
+                    <i class="icon-home icon-large"></i>    <i18n>home</i18n>
                     </a> </li>
                 <li id="com" class="unselectedcom" onClick="toggleElementVisibility('submenu_com','up')"> <a>
-                        <i18n>comunica</i18n>
+                        <i class="icon-comments-alt icon-large"></i>   <i18n>comunica</i18n>
                     </a> </li>
                 <li id="tools" class="unselectedtools" onClick="toggleElementVisibility('submenu_tools','up')"> <a>
-                        <i18n>strumenti</i18n>
+                        <i class="icon-wrench icon-large"></i>  <i18n>strumenti</i18n>
                     </a> </li>
                 <li id="actions" class="unselectedactions" onClick="toggleElementVisibility('submenu_actions','up')">
                     <a>
-                        <i18n>agisci</i18n>
+                       <i class="icon-pencil icon-large"></i> <i18n>agisci</i18n>
                     </a>
                 </li>
                 <li id="ancora_menuright" onClick="toggleElementVisibility('menuright', 'right');">
                     <a>
-                        <i18n>Naviga</i18n>
+                        <i class="icon-globe icon-large"></i> <i18n>Naviga</i18n>
                     </a>
                 </li>
                 <li id="question_mark" class="unselectedquestion_mark" onClick="toggleElementVisibility('submenu_question_mark','up'); return false;">
                     <a>
-                        <i18n>Help</i18n>
+                        <i class="icon-question icon-large"></i> <i18n>Help</i18n>
                     </a>
                 </li>
                 <li id="esc"> <a href="../index.php">
-                        <i18n>esci</i18n>
+                       <i class="icon-off icon-large"></i> <i18n>esci</i18n>
                     </a> </li>
             </ul>
             <!-- / menu -->

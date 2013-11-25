@@ -41,8 +41,6 @@
 		</div>
 		<div class="helpcont">
 		  <template_field class="template_field" name="helpmsg">helpmsg</template_field>
-		  <template_field class="template_field" name="lynxRSS">lynxRSS</template_field>
-		  <template_field class="template_field" name="ecmRSS">ecmRSS</template_field>
             </div>
          </div>
          </div>
@@ -60,19 +58,19 @@
 <!-- MENU A TENDINA -->
 <div id="mainmenu">
 <ul id="menu">
-		<li id="actions" class="unselectedactions">
+		<li id="actions_cons" class="unselectedactions_cons">
 				<a href="browsing/registration.php">
-					 <i18n>registrati</i18n>
+					 <i class="icon-pencil icon-large"></i> <i18n>registrati</i18n>
 				</a>
 		</li>
-		<li id="tools" class="unselectedtools">
+		<li id="tools_cons" class="unselectedtools_cons">
 				<a href="info.php">
-           			 <i18n>informazioni</i18n>
+           			 <i class="icon-wrench icon-large"></i> <i18n>informazioni</i18n>
 			        </a>
 	 </li>
-        <li id="question_mark" class="unselectedquestion_mark">
+        <li id="question_mark_consilia" class="unselectedquestion_mark_consilia">
 				<a href="help.php" target="_blank">
-					 <i18n>help</i18n>
+					 <i class="icon-question icon-large"></i> <i18n>help</i18n>
 				</a>
         </li>
 	<!--li id="language_choose" class="language_choose">

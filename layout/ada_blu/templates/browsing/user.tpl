@@ -65,47 +65,19 @@
             </div>
 
             <!-- contenuto -->
-            
             <div id="content">
                 <div id="contentcontent" class="contentcontent_default">
-                    <!-- start tre blocchi grafici homepage -->
-
-			<div id="trebox">
-				<!-- blocco1 -->
-				<div id="blocco_uno">
-					<div id="cosacedinuovo"><i18n>Cosa c'&egrave; di nuovo?</i18n></div>
-					<ul id="lista_blocco_uno">
-						<li id="new_nodes"><i18n>Contenuti aggiornati</i18n>:&nbsp;<template_field class="template_field" name="new_nodes_links">new_nodes_links</template_field></li>						
-					</ul>
-				</div>
-				<!-- blocco1 end -->
-				<!-- blocco2 -->
-				<div id="blocco_due">
-					<div id="corsodilingua"><i18n>Il corso</i18n></div>
-						<ul id="lista_blocco_due">
-							<li id="gostart"><template_field class="template_field" name="gostart">gostart</template_field></li>		
-							<li id="gocontinue"><template_field class="template_field" name="gocontinue">gocontinue</template_field></li>		
-							<li id="goindex"><template_field class="template_field" name="goindex">goindex</template_field></li>
-						</ul>
-				</div>
-				<!-- blocco2 end -->
-				<!-- blocco3 -->
-					<div id="blocco_tre">	
-					<div id="laclasse"><i18n>La classe</i18n></div>	
-						<ul id="lista_blocco_tre">
-							<li id="goclasse"><template_field class="template_field" name="goclasse">goclasse</template_field></li>		
-							<li id="goforum"><template_field class="template_field" name="goforum">goforum</template_field></li>
-							<li id="msg_forum"><i18n>Nuove note</i18n>:&nbsp;<template_field class="template_field" name="msg_forum">msg_forum</template_field></li>															
-						</ul>
-					</div>
-				<!-- blocco3 end -->
-			</div>
-			<!-- end tre blocchi grafici homepage -->
+                    <div class="first">
+                        <div id="help">
+                            <template_field class="template_field" name="help">help</template_field>
+                        </div>
+                        <template_field class="template_field" name="data">data</template_field>
+                    </div>
+                </div>
+                <div id="bottomcont">
+                </div>
             </div>
             <!--  / contenuto -->
-            
-            
-            
             <!-- com_tools -->
             <div id="com_tools">
                 <div id="topcom_t">
@@ -143,7 +115,6 @@
             </div>
             <!-- / menudestra  -->
         </div>
-</div>
         <!-- / contenitore -->
 
         <!-- MENU A TENDINA -->
@@ -151,27 +122,27 @@
             <ul id="menu">
                 <li id="home">
                     <a href="user.php">
-                        <i18n>home</i18n>
+                       <i class="icon-home icon-large"></i>  <i18n>home</i18n>
                     </a>
                 </li>
                 <li id="com" class="unselectedcom" onClick="toggleElementVisibility('submenu_com','up')">
                     <a>
-                        <i18n>comunica</i18n>
+                      <i class="icon-comments-alt icon-large"></i>  <i18n>comunica</i18n>
                     </a>
                 </li>
                 <li id="tools" class="unselectedtools" onClick="toggleElementVisibility('submenu_tools','up')">
                     <a>
-                        <i18n>strumenti</i18n>
+                        <i class="icon-wrench icon-large"></i> <i18n>strumenti</i18n>
                     </a>
                 </li>
                 <li id="actions" class="unselectedactions" onClick="toggleElementVisibility('submenu_actions','up')">
                     <a>
-                        <i18n>agisci</i18n>
+                        <i class="icon-pencil icon-large"></i> <i18n>agisci</i18n>
                     </a>
                 </li>
                 <li id="ancora_menuright">
                     <a href="../info.php">
-                        <i18n>corsi</i18n>
+                        <i class="icon-file-text-alt icon-large"></i> <i18n>corsi</i18n>
                     </a>
                 </li>
 <!--
@@ -183,12 +154,12 @@
 -->
                 <li id="question_mark" class="unselectedquestion_mark" onClick="toggleElementVisibility('submenu_question_mark','up'); return false;">
                     <a>
-                        <i18n>Help</i18n>
+                        <i class="icon-question icon-large"></i> <i18n>Help</i18n>
                     </a>
                 </li>
                 <li id="esc">
                     <a href="../index.php">
-                        <i18n>esci</i18n>
+                       <i class="icon-off icon-large"></i>  <i18n>esci</i18n>
                     </a>
                 </li>
             </ul>

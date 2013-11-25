@@ -23,6 +23,7 @@ html,body {
 #submenubanner {
 	background: #FFA400;
 	color: #FFFFFF;
+	padding-left: 5px;
 }
 
 #newscont {
@@ -70,3 +71,169 @@ html,body {
 #footer a:hover {
 	color: #aeaeae;
 }
+
+
+
+
+
+
+/* inizio configurazione stile consilia */
+
+body {
+	/*font-family: 'kaffeesatzregular',Lucida Sans,Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: normal;*/
+    padding: 5px 2px;
+}
+
+
+
+/* da rimuovere - verificare Luca */
+.faw {
+    font-family: 'FontAwesome';
+}
+
+
+#logo_title {
+    top: -5px;
+}
+
+
+
+
+UL#menu {
+    font-family: 'kaffeesatzregular',Lucida Sans,Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+UL#menu a:hover {
+    color: #F2A518;
+    font-size: 1.6em;
+}
+
+
+
+/* top menu consilia  */
+
+#mainmenu {
+	margin-top: 81px;
+	padding-left: 15px;
+	padding-right: 1px;
+	z-index: 1000;
+	width: 98%;
+	top: 0;
+}
+
+UL#menu {
+	height: 50px;
+	line-height: 50px;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0;
+}
+
+#menu {
+	background-color: #006EB9;
+	background-image: none;
+	/* 
+	background-position: center center;
+	background-repeat: repeat; 
+	*/
+	border: 0px;
+}
+
+
+/* spostamento bottoni sulla destra   */
+
+#esc_cons {
+right: 10px;
+position: absolute; 
+}
+
+#question_mark_cons {
+right: 100px;
+position: absolute; 
+}
+
+
+
+
+
+
+
+/* barra navigazione arancione   */
+
+#journey {
+	background-color: #F2A518;
+	background-image: none;
+    margin-bottom: 0px;
+    margin-top: -5px;
+    margin-right: -10px;
+    margin-left: -12px;
+    padding: 0 0 0 10px;
+}
+
+
+
+/*
+  * Formattazione com tools footer
+  */
+  
+#com_toolscontent {
+    background: none repeat scroll 0 0 #F2A518;
+    color: #616161;
+    padding: 1px;
+    display:none;
+}
+  
+  #com_tools .default_table {
+    color: #616161;
+}
+
+
+/* freccia fondo pagina */
+
+#freccia-top {
+    color: #616161;
+    font-size: 1.4em;
+}
+
+#freccia-top A {
+    color: #616161;
+    text-decoration: none;
+}
+
+#freccia-top A:hover {
+    color: #F2A518;
+}
+
+
+#footer a:visited {
+    color: #F2A518;
+}
+
+
+
+#container {
+
+    border-bottom: 2px solid #F2A518;
+
+}
+
+
+
+#content {
+    margin-top: -5px;
+}
+
+
+#status_bar {
+    border-bottom: none;
+}
+
+#user_data {
+    margin-right: 14px;
+}
+
+
+/* fine configurazione stile consilia */

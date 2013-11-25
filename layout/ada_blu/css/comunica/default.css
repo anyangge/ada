@@ -11,12 +11,12 @@ A IMG {border:none;}
 table,tbody, tr, td, th { border-collapse: collapse;font-weight: inherit;font-style: inherit;font-size: 100%;line-height: 1;
 						  font-family: inherit;text-align: left;vertical-align: baseline;}
 						  
-thead { border-collapse: collapse; background: #ececea; height:30px; font-weight: bold; line-height: 1; font-style: inherit;
+thead { border-collapse: collapse; background: #DCF1FE; height:30px; font-weight: bold; line-height: 1; font-style: inherit;
 		font-size: 100%;line-height: 1;font-family: inherit;text-align: center; vertical-align: baseline;}
 		
 th{ vertical-align:middle; text-transform: uppercase; }
 
-tbody td { border-bottom:1px solid #ECECEA;	height:30px; line-height:1.5em;}
+tbody td { border-bottom:1px solid #DCF1FE;	height:30px; line-height:1.5em;}
 
 colgroup { }
 col { }
@@ -40,7 +40,7 @@ a:visited { text-decoration: none; }
     margin: 0;
     padding: 0 0 0 10px;
 }
-#user_wrap 	{background:#1665ad url(../../img/userid.png) no-repeat 99% 50%; width:100%}
+#user_wrap 	{background:#006EB9 url(../../img/userid.png) no-repeat 99% 50%; width:100%}
 #content	{background:#fff; padding:10px; clear:both;min-height:350px;border-bottom:10px solid #c9c9c9;}
 
 /* CLEAR FIX*/
@@ -50,7 +50,7 @@ a:visited { text-decoration: none; }
 
 /* MENU
 ----------------------------------------------- */
-#menu {  background-color:#61aba7; border:10px solid white; }
+#menu {  background-color:#006EB9; border:10px solid white; }
 UL#menu  {margin:0 20px 0 300px; padding:0; height:50px; line-height:50px; list-style-type:none;}
 UL#menu  LI {margin:0; padding:0; list-style-type:none; float:left; margin:0 0px 0 20px; }
 UL#menu LI A {text-transform: lowercase; color:#fff; font-weight:bold; text-decoration:none;}
@@ -97,7 +97,7 @@ UL#menu_std LI A {text-transform: lowercase; color:#fff; font-weight:bold; text-
 #submenu_actions_read ul { padding: 0; margin: 0;}
 /* LABEL
 ----------------------------------------------- */
-#label {float:left; background:#1665AD no-repeat right top; width:30%; padding:0 0 0 10px;}
+#label {float:left; background:#006EB9 no-repeat right top; width:30%; padding:0 0 0 10px;}
 #label H1 {margin:0; padding:20px 0 5px 0; font-size:1.2em; color:whitesmoke}
 #user_data {float:right; width:60%; color:#000; text-align:right; padding:10px 40px 0 0;}
 
@@ -207,3 +207,7 @@ td.input {}
 .sortable A:hover {background:#8ED; color:#f50;}
 th.sortcol:hover {background:#96e1dd; color:#f50;}
 /*.sortable_th:hover {background:#ffc; color:#f50;}*/
+
+#journey {
+margin: -5px 29px 0 15px;
+}
