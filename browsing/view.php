@@ -66,6 +66,15 @@ if ($userObj instanceof ADAGuest) {
     $self = whoami();
 }
 
+if ($nodeObj->type != ADA_NOTE_TYPE && $nodeObj->type != ADA_PRIVATE_NOTE_TYPE)
+{
+	require_once 'include/DFSNavigationBar.inc.php';
+	$navBar = new DFSNavigationBar($nodeObj, array(
+												'prevId' => $_GET['prevId'],
+												'nextId' => $_GET['nextId'],
+												'userLevel' => $user_level));
+}
+
 // search
 // versione con campo UNICO
 
@@ -532,28 +541,9 @@ switch ($op){
 		   }
 		}
 		
-		/**
-		 * GIORGIO 11/set/2013
-		 * THIS IS A DIRTY TRICK TO HAVE PREV AND NEXT ARROWS WORKING IN THE DEMO!!!
-		 * *MUST* REMOVE IT IN PRODUCTION!!!
-		 */
-		$prevNextLink = array (
-			'109_0' => array ('prev'=>'', 'next'=>'109_8'),
-			'109_8' => array ('prev'=>'109_0', 'next'=>'109_9'),
-			'109_9' => array ('prev'=>'109_8', 'next'=>'')
-		);			
-		unset ($content_dataAr['go_prev']);
-		unset ($content_dataAr['go_next']);
-		if ($prevNextLink[$nodeObj->id]['prev']!='') $content_dataAr['go_prev'] = "<a href=view.php?id_node=".$prevNextLink[$nodeObj->id]['prev']."><i class='icon-arrow-left icon-large'></i></a>";			
-		if ($prevNextLink[$nodeObj->id]['next']!='') $content_dataAr['go_next'] = "<a href=view.php?id_node=".$prevNextLink[$nodeObj->id]['next']."><i class='icon-arrow-right icon-large'></i></a>";
-		/**
-		 * GIORGIO 11/set/2013
-		 * DIRTY TRICK ENDS HERE!
-		 */
-		
+		$content_dataAr['go_prev'] = $navBar->getHtml('prev',"<i class='icon-arrow-left icon-large'></i>");
+		$content_dataAr['go_next'] = $navBar->getHtml('next',"<i class='icon-arrow-right icon-large'></i>");
 
-		
-		
 		ARE::render($layout_dataAR,$content_dataAr, null,$optionsAr);
 
 }
