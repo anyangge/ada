@@ -883,7 +883,8 @@ function filter_nodeFN($user_level,$user_history,$id_profile='3',$querystring=''
   $htmldataHa['exercises'] = $this->get_exercisesFN($user_level);
   $htmldataHa['notes'] = $this->get_notesFN($user_level,$id_profile);
   $htmldataHa['private_notes'] = $this->get_private_notesFN($user_level,$id_profile);
-  $htmldataHa['extended_node'] = $this->get_extended_nodeFN($user_level,$id_profile);
+ //$htmldataHa['extended_node'] = $this->get_extended_nodeFN($user_level,$id_profile);
+  $htmldataHa['extended_node'] ='';
 
   if ($this->type == ADA_LEAF_TYPE || $this->type == ADA_GROUP_TYPE || $this->type == ADA_NOTE_TYPE || $this->type == ADA_PRIVATE_NOTE_TYPE) {
       if (SEARCH_WORD_IN_NODE)
@@ -903,6 +904,7 @@ function search_text_in_glosary($text) {
 //    $textAR = explode(" ",$text);
     $textAR = preg_split('# |&nbsp;|<p>|</p>#',$text);
 
+//    print_r($textAR);
     $leaf_word = ADA_LEAF_WORD_TYPE;
     $group_word = ADA_GROUP_WORD_TYPE;
     for ($i=0; $i<count($textAR); $i++) {
@@ -1068,8 +1070,7 @@ function search_text_in_glosary($text) {
 		/*
 		 * Create a mediaviewer
 		 */
-                $media_title = '';
-		$mediaviewer = new MediaViewer($http_file_path, $user_data, $VIEWINGPREFERENCES,$media_title);
+		$mediaviewer = new MediaViewer($http_file_path, $user_data, $VIEWINGPREFERENCES);
 
 		/*
 		 * If at least one among media filter, external link filter, document filter is enabled, search and
@@ -1132,15 +1133,13 @@ function search_text_in_glosary($text) {
 		$replaces = array();
 		if (!empty($matches)) {
 			foreach($matches as $k=>$v) {
-				if (strtoupper($v['tag']) == 'MEDIA' && preg_match('/'.$media_type.'/',$v['type']) && preg_match('/'.$media_value.'/',$v['value'])) {
-                                        $instance->setMediaPath($v);
+				if ($v['tag'] == 'MEDIA' && preg_match('/'.$media_type.'/',$v['type']) && preg_match('/'.$media_value.'/',$v['value'])) {
 					$searches[$k] = $v['str'];
 					$replaces[$k] = $instance->{$function}($v);
 				}
 			}
 		}
-                $searches[]='</media>';
-                $replaces[]='';
+
 		return str_replace($searches,$replaces,$text);
 	}
 
@@ -1150,7 +1149,7 @@ function search_text_in_glosary($text) {
 		$replaces = array();
 		if (!empty($matches)) {
 			foreach($matches as $k=>$v) {
-				if (strtoupper($v['tag']) == 'LINK' && strtoupper($v['type']) == 'INTERNAL' && is_numeric($v['value'])) {
+				if ($v['tag'] == 'LINK' && $v['type'] == 'INTERNAL' && is_numeric($v['value'])) {
 					$searches[$k] = $v['str'];
 					$replaces[$k] = $instance->{$function}($v);
 				}
@@ -1161,26 +1160,25 @@ function search_text_in_glosary($text) {
 	}
 
 	public static function extractLinkMediaTags($text) {
-                $dh = $GLOBALS['dh'];
-		$regexp = '/<((MEDIA|LINK)[^>]*)>/imU';
+		$regexp = '/<((MEDIA|LINK)[^>]*)>/mU';
 
 		preg_match_all($regexp, $text, $matches, PREG_SET_ORDER);
 
 		$array = array();
 		if (!empty($matches)) {
 			foreach($matches as $k=>$v) {
-				preg_match('/TYPE="([^"]+)"/i',$v[1],$type);
+				preg_match('/TYPE="([^"]+)"/',$v[1],$type);
 				$type = $type[1];
-				preg_match('/VALUE="([^"]+)"/i',$v[1],$value);
+				preg_match('/VALUE="([^"]+)"/',$v[1],$value);
 				$value = $value[1];
-				$add_title = preg_match('/TITLE="([^"]+)"/i',$v[1],$title);
+				$add_title = preg_match('/TITLE="([^"]+)"/',$v[1],$title);
 				$title = $title[1];
-				$add_width = preg_match('/WIDTH="([^"]+)"/i',$v[1],$width);
+				$add_width = preg_match('/WIDTH="([^"]+)"/',$v[1],$width);
 				$width = $width[1];
-				$add_height = preg_match('/HEIGHT="([^"]+)"/i',$v[1],$height);
+				$add_height = preg_match('/HEIGHT="([^"]+)"/',$v[1],$height);
 				$height = $height[1];
-                                $id_node = $_SESSION['sess_id_node'];
-                                $mediaInfoAr = $dh->get_risorsa_esterna_info_from_filename($value,$id_node);
+
+
 				$array[$k] = array(
 					'str'=>$v[0],
 					'tag'=>$v[2],
@@ -1189,7 +1187,6 @@ function search_text_in_glosary($text) {
 					'title'=>($add_title)?$title:null,
 					'width'=>($add_width)?$width:null,
 					'height'=>($add_height)?$height:null,
-                                        'owner'=>$mediaInfoAr['id_utente']
 				);
 			}
 		}
