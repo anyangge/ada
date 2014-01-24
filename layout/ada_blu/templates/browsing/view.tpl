@@ -163,9 +163,9 @@
                         <li class="_menu">
 							<template_field class="template_field" name="search_form">search_form</template_field>
                         </li>
-                        <!--li class="_menu">
+                        <!--<li class="_menu">
 							<template_field class="template_field" name="go_map">go_map</template_field>
-                        </li-->
+                        </li>-->
                     </ul>
                     <ul id="attachment">
                         <li class="_name">
@@ -184,15 +184,15 @@
                             <template_field class="template_field" name="link">link</template_field>
                             </li>
                         </ul>
-                        <li class="_name">
+                        <!--<li class="_name">
                         <i18n>esercizi</i18n>
                         </li>
                         <ul>
                             <li>
                             <template_field class="template_field" name="exercises">exercises</template_field>
                             </li>
-                        </ul>
-                        <li class="_name">
+                        </ul>-->
+                  <li class="_name">
                         <i18n>risorse</i18n>
                         </li>
                         <ul>
@@ -284,7 +284,7 @@
                     <div id="_comcontent">
                         <ul>
                             <li>
-                                <a href="#" onclick='openMessenger("../comunica/list_messages.php",800,600);'>
+                               <a href="#" onclick='openMessenger("../comunica/list_messages.php",800,600);'>
                                     <i18n>messaggeria</i18n>
                                 </a>
                             </li>
@@ -316,7 +316,7 @@
                     <div id="_toolscontent">
                         <ul>
                             <li>
-                                <a href="#" onclick='openMessenger("../comunica/list_events.php",800,600);'>
+                                <a href="#" onclick='openMessenger("../comunica/list_events.php",800,600);'> 
                                     <i18n>agenda</i18n>
                                 </a>
                             </li>
@@ -330,6 +330,14 @@
                                     <i18n>cronologia</i18n>
                                 </a>
                             </li>
+                            
+                            
+                        <li>
+                            <a href="../browsing/main_index.php?op=glossary"> 
+                           
+                                <i18n>glossario</i18n> 
+                            </a>
+                         </li>
 							<li>
                                 <template_field class="template_field" name="exercise_history">exercise_history</template_field>
                             </li>
