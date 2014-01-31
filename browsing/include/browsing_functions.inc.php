@@ -87,11 +87,14 @@ if ($_REQUEST['mode']) {
 /**
  * @var Object
  */
-$userObj = read_user($sess_id_user);
-if (ADA_Error::isError($userObj)){
-  $userObj->handleError();
-}
-else {
+  if($_SESSION['sess_userObj'] instanceof ADAGenericUser) {
+      $userObj = $_SESSION['sess_userObj'];
+  } else {    
+    $userObj = read_user($sess_id_user);
+    if (ADA_Error::isError($userObj)){
+      $userObj->handleError();
+    }
+  }
   $id_profile = $userObj->getType();
   switch ($id_profile){
     case AMA_TYPE_STUDENT:
@@ -147,7 +150,6 @@ else {
 
   $user_eventsAr = MultiPort::getUserEventsNotRead($userObj);
   $user_events    = CommunicationModuleHtmlLib::getEventsAsTable($userObj, $user_eventsAr, $testers_dataAr);
-}
 //}
 /*
  * Get this user needed objects from $neededObjAr based on user tyoe
@@ -192,8 +194,7 @@ if (in_array('course',$thisUserNeededObjAr)){
 }
 
 if (in_array('course_instance',$thisUserNeededObjAr)){
-
-  if(!MultiPort::isUserBrowsingThePublicTester() && $sess_id_course!=PUBLIC_COURSE_ID_FOR_NEWS) {
+  if (!ADA_Error::isError($courseObj) && !$courseObj->getIsPublic ()) {
 
     /**
      *  get Course_Instance object
