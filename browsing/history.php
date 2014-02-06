@@ -39,6 +39,16 @@ require_once ROOT_DIR . '/include/module_init.inc.php';
 
 include_once 'include/browsing_functions.inc.php';
 
+$self_instruction=$courseInstanceObj->self_instruction;  //if a course instance is self_instruction
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
+{
+    $self='GeneralSelfInstruction';
+}
+else
+{
+    $self = 'default';
+}
+
 if ($userObj instanceof ADALoggableUser) {
 
     $last_visited_node_id = $userObj->get_last_accessFN($sess_id_course_instance, 'N');
@@ -151,6 +161,48 @@ if ($userObj instanceof ADALoggableUser) {
     $history = translateFN('Cronologia non disponibile.');
 }
 
+/*
+ * Edit profile
+ */
+
+$edit_profile=$userObj->getEditProfilePage();
+
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
+{
+    $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile.'?self_instruction=1');
+}
+else
+{
+    $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile);
+}
+$edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
+
+/*
+ * Home Page
+ */
+
+$home_page=$userObj->getHomePage();
+$home_page_link = CDOMElement::create('a', 'href:'.$home_page);
+$home_page_link->setAttribute('class', 'iconHomePage');
+
+$home_page_link->addChild(new CText(translateFN('Home')));
+
+/*
+ * link corsi
+ */
+$corsi=CDOMElement::create('a','href:../info.php');
+$corsi->setAttribute('class', 'positionCorsi');
+$corsi->addChild(new CText(translateFN('Corsi')));
+
+
+/*
+ * link Agisci
+ */
+$agisci=CDOMElement::create('a','');
+$agisci->addChild(new CText(translateFN('Agisci')));
+
+
+
 $banner = include ROOT_DIR . '/include/banner.inc.php';
 $content_dataAr = array(
     'chat_link' => $chat_link,
@@ -164,7 +216,11 @@ $content_dataAr = array(
     'data' => $history,
     'messages' => $user_messages->getHtml(),
     'agenda' => $user_agenda->getHtml(),
-    'chat_users' => $online_users
+    'chat_users' => $online_users,
+    'edit_profile'=> $edit_profile_link->getHtml(),
+    'corsi'=>$corsi->getHtml(),
+    'agisci' =>$agisci->getHtml(),
+    'home_page' => $home_page_link->getHtml()
 );
 /**
  * Sends data to the rendering engine

@@ -469,6 +469,19 @@ input.right_answer_test, select.right_answer_test {
 	vertical-align: middle;
 }
 
+.iconHomePage { 
+   
+    //background: url('../img/home.gif') no-repeat  center;
+        padding-left: 43px;
+        cursor: pointer;
+	background: url('../img/home.png') no-repeat center left;
+	width:40px;
+	height:50px;
+	display:inline-block;
+	//vertical-align: center;
+       
+}
+
 .erase_variation_test, .highlight_variation_test {
 	float: left;
 	margin-right: 15px;

@@ -10,13 +10,6 @@
 
 
 
-
-
-
-
-
-
-
 #banner {
     position: absolute;
     top: 8px;
@@ -89,10 +82,11 @@ background: url(../../img/back.png) no-repeat center left; display:block; paddin
 #content li { list-style-type: none; }
 #contentcontent {}
 .contentcontent_default {
-    padding: 0 10px 10px 10px;
+    padding: 0px 10px 10px 10px;
 	 background-color: White;
 }
 .contentcontent_view {
+     
      padding: 0px 10px 10px 10px;
 	 background-color: White;
 }
@@ -422,6 +416,7 @@ background: url(../../img/back.png) no-repeat center left; display:block; paddin
     text-align: center;
     font-weight: bold;
  }
+ 
 
 /*
  * classi per le celle di tabelle che contengono input
@@ -470,4 +465,57 @@ background: url(../../img/back.png) no-repeat center left; display:block; paddin
 	text-align: left;
     font-weight: bold;
 	}
+
+ 
+.iconHomePage { 
+   
+        padding-left: 43px;
+        cursor: pointer;
+	background: url('../../img/home.png') no-repeat center left;
+	width:40px;
+	height:50px;
+	display:inline-block;
+       
+}
+
+.iconNaviga{
+    
+        padding-left: 20px;
+        cursor: pointer;
+	background: url('../../img/naviga.png') no-repeat center left;
+	width:75px;
+	height:50px;
+	display:inline-block;
+}
+
+.positionNaviga {
+    margin-left:38px;
+}
+.positionCorsi
+{
+   margin-left:-48px; 
+}
+.GlossarySelfInstructionPosition {
+    margin-top: -315px;
+    background-color: White;
+}
+
+
+.firstSearch { margin-top: -310px; padding-top: 15px;}
+
+.search_results_SelfInstruction
+{
+    margin-top: 50px;
+}
+.labelClass
+{
+ 
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+.label_word
+{
+    
+}
 

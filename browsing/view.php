@@ -60,12 +60,21 @@ if ($cacheObj->getCachedData){
  *
  */
 
+$self_instruction=$courseInstanceObj->self_instruction;  //if a course instance is self_instruction
+    
 if ($userObj instanceof ADAGuest) {
     $self = 'guest_view';
-} else {
-    $self = whoami();
+}
+ elseif($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) {                    
+    $self='viewSelfInstruction';
+    // $self='tutorSelfInstruction';
+}
+else {
+   $self = whoami(); 
 }
 
+
+        
 if ($nodeObj->type != ADA_NOTE_TYPE && $nodeObj->type != ADA_PRIVATE_NOTE_TYPE)
 {
 	require_once 'include/DFSNavigationBar.inc.php';
@@ -256,7 +265,7 @@ if ($id_profile == AMA_TYPE_TUTOR || $id_profile == AMA_TYPE_STUDENT) {
 	 * Ci sono anche altri controlli da fare, tipo quelli che stanno nella
 	 * videochat
 	 */
-	$video_chat = '<a href="' . HTTP_ROOT_DIR . '/comunica/videochat.php" target="_blank">' . translateFN('video conference') . '</a>';
+        $video_chat = '<a href="' . HTTP_ROOT_DIR . '/comunica/videochat.php" target="_blank">' . translateFN('video conference') . '</a>';
 	$chat = '<a href="' . HTTP_ROOT_DIR . '/comunica/chat.php" target="_blank">' . translateFN('chat') . '</a>';
 	$go_download = '<a href="' . HTTP_ROOT_DIR . '/browsing/download.php">' . translateFN('file sharing') . '</a>';
 	$send_media = '<a href="' . HTTP_ROOT_DIR . '/services/upload.php">' . translateFN('invia un file') . '</a>';
@@ -338,7 +347,25 @@ foreach ($keyAr as $keyword){
 	$linksAr [] = "<a href=\"search.php?s_node_title=$keyword&submit=cerca&l_search=all\">$keyword</a>";
 }
 
-$linked_node_keywords = implode(',',$linksAr);                
+$linked_node_keywords = implode(',',$linksAr);  
+
+/*
+ * Edit profile
+ */
+
+$edit_profile=$userObj->getEditProfilePage();
+
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
+{
+    $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile.'?self_instruction=1');
+}
+else
+{
+    $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile);
+}
+$edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
+
+
 /**
  * content_data
  * @var array
@@ -375,7 +402,8 @@ $content_dataAr = array(
 	'go_print' => $go_print,
 	'go_download' => $go_download,
 	'video_chat' => $video_chat,
-	'chat' => $chat
+	'chat' => $chat,
+        'edit_profile'=> $edit_profile_link->getHtml()
 		//        'messages' => $user_messages,
 		//        'agenda' => $user_agenda
 );
@@ -511,7 +539,10 @@ switch ($op){
 				JQUERY_NO_CONFLICT,
 				ROOT_DIR. '/external/mediaplayer/flowplayer-5.4.3/flowplayer.js'
 		);		
-
+              if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) {                    
+                //$self='viewSelfInstruction';
+                $layout_dataAR['JS_filename'][] = ROOT_DIR.'/js/browsing/view.js';
+              }
 		/**
 		 * if the jqueru-ui theme directory is there in the template family,
 		 * do not include the default jquery-ui theme but use the one imported
@@ -537,6 +568,7 @@ switch ($op){
                     $content_dataAr['go_next'] = $navBar->getHtml('next'); // can pass href text as second param
                 }
 
+  
 		ARE::render($layout_dataAR,$content_dataAr, null,$optionsAr);
 
 }

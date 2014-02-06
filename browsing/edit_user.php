@@ -37,7 +37,7 @@ $neededObjAr = array(
 );
 
 require_once ROOT_DIR . '/include/module_init.inc.php';
-$self = whoami();
+
 include_once 'include/browsing_functions.inc.php';
 require_once ROOT_DIR . '/include/FileUploader.inc.php';
 
@@ -45,6 +45,19 @@ require_once ROOT_DIR . '/include/FileUploader.inc.php';
  * YOUR CODE HERE
  */
 require_once ROOT_DIR . '/include/Forms/UserProfileForm.inc.php';
+
+
+
+$self_instruction=$_GET['self_instruction'];   //if a course instance is self_instruction
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
+{
+    $self='GeneralSelfInstruction';
+}
+else
+{
+    $self = whoami();
+}
+
 $languages = Translator::getLanguagesIdAndName();
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -253,12 +266,93 @@ $layout_dataAr['JS_filename'] = array(
 		ROOT_DIR.'/js/include/jquery/pekeUpload/pekeUpload.js'
 );
 
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) 
+     {   
+       $layout_dataAr['JS_filename'][]=  ROOT_DIR.'/js/browsing/edit_user.js';
+     }
+
 $layout_dataAr['CSS_filename'] = array(
 		JQUERY_UI_CSS,
 		ROOT_DIR.'/js/include/jquery/pekeUpload/pekeUpload.css'
 );
 
+
+
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) 
+     {   
+       $layout_dataAr['CSS_filename'][]=  ROOT_DIR.'/layout/ada_blu/css/browsing/edit_user.css';
+     }
+     
 $maxFileSize = (int) (ADA_FILE_UPLOAD_MAX_FILESIZE / (1024*1024));
+
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
+{
+    $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile.'?self_instruction=1');
+}
+else
+{
+    $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile);
+}
+$edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
+
+/*
+ * Home Page
+ */
+
+$home_page=$userObj->getHomePage();
+$home_page_link = CDOMElement::create('a', 'href:'.$home_page);
+$home_page_link->setAttribute('class', 'iconHomePage');
+
+$home_page_link->addChild(new CText(translateFN('Home')));
+
+/*
+ * link corsi
+ */
+$corsi=CDOMElement::create('a','href:../info.php');
+$corsi->setAttribute('class', 'positionCorsi');
+$corsi->addChild(new CText(translateFN('Corsi')));
+$corsi=$corsi->getHtml();
+
+/*
+ * link Agisci
+ */
+$agisci=CDOMElement::create('a','');
+$agisci->addChild(new CText(translateFN('Agisci')));
+
+$navigation_history = $_SESSION['sess_navigation_history'];
+$last_visited_node  = $navigation_history->lastModule();
+//var_dump($last_visited_node);
+
+
+/*
+ * link Naviga
+ */
+$naviga=CDOMElement::create('a','#');
+$naviga->setAttribute(onclick, "toggleElementVisibility('menuright', 'right')");
+$naviga->setAttribute('class', 'positionNaviga');
+$naviga->addChild(new CText(translateFN('Naviga')));
+$naviga=$naviga->getHtml();
+
+   /*
+ * Go back link
+ */
+$navigation_history = $_SESSION['sess_navigation_history'];
+$last_visited_node  = $navigation_history->lastModule();
+$go_back_link = CDOMElement::create('a', 'href:'.$last_visited_node);
+$go_back_link ->setAttribute('class', 'positionNaviga');
+$go_back_link->addChild(new CText(translateFN('Naviga')));
+$go_back_link=$go_back_link->getHtml();
+
+if(!strstr($last_visited_node,'main_index.php'))
+{
+    $naviga='';
+}
+ else 
+{
+    $corsi='';
+    $naviga=$go_back_link;
+}
+
 
 /**
  * do the form have to be submitted with an AJAX call?
@@ -280,7 +374,12 @@ $content_dataAr = array(
     'status' => $status,
     'title' => translateFN('Modifica dati utente'),
     'data' => $data,
-    'help' => $help
+    'help' => $help,
+    'corsi'=>$corsi,
+    'edit_profile'=> $edit_profile_link->getHtml(),
+    'agisci' =>$agisci->getHtml(),
+    'naviga'=>$naviga,
+    'home_page' => $home_page_link->getHtml()
 );
 
 ARE::render($layout_dataAr, $content_dataAr,NULL, $optionsAr);

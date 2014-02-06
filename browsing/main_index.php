@@ -35,19 +35,19 @@ $neededObjAr = array(
   AMA_TYPE_AUTHOR  => array('node','layout','course')
 );
 
-$neededObjAr = array(
+/* $neededObjAr = array(
   AMA_TYPE_VISITOR => array('layout','course'),
   AMA_TYPE_STUDENT => array('layout','tutor','course','course_instance'),
   AMA_TYPE_TUTOR   => array('layout','course','course_instance'),
   AMA_TYPE_AUTHOR  => array('layout','course')
 );
-
+*/
 
 /**
  * Performs basic controls before entering this module
  */
 require_once ROOT_DIR.'/include/module_init.inc.php';
-$self = 'index';
+//$self = 'index';
 
 include_once 'include/browsing_functions.inc.php';
 include_once 'include/cache_manager.inc.php';
@@ -56,6 +56,16 @@ include_once 'include/cache_manager.inc.php';
 include_once CORE_LIBRARY_PATH.'/includes.inc.php';
 include_once ROOT_DIR.'/include/bookmark_class.inc.php';
 
+
+$self_instruction=$courseInstanceObj->self_instruction;  //if a course instance is self_instruction
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
+{
+    $self='GeneralSelfInstruction';
+}
+else
+{
+    $self = 'index';
+}
 
 if (!isset($hide_visits)) {
   $hide_visits = 1; // default: no visits countg
@@ -566,6 +576,53 @@ $back_link = "<a href='".$_SERVER['HTTP_REFERER']."' class='backLink' title='Go 
 if (!empty($courseInstanceObj->title)) {
 	$course_title .= ' - '.$courseInstanceObj->title;
 }
+
+/*
+ * Edit profile
+ */
+
+$edit_profile=$userObj->getEditProfilePage();
+
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
+{
+    $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile.'?self_instruction=1');
+    $user_type=$user_type.' livello '.$user_level;
+    $user_level='';
+    $layout_dataAr['JS_filename']=array(ROOT_DIR.'/js/include/menu_functions.js'); 
+    
+}
+else
+{
+    $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile);
+}
+$edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
+
+/*
+ * Home Page
+ */
+
+$home_page=$userObj->getHomePage();
+$home_page_link = CDOMElement::create('a', 'href:'.$home_page);
+$home_page_link->setAttribute('class', 'iconHomePage');
+
+$home_page_link->addChild(new CText(translateFN('Home')));
+
+/*
+ * link Naviga
+ */
+$naviga=CDOMElement::create('a','#');
+$naviga->setAttribute(onclick, "toggleElementVisibility('menuright', 'right')");
+$naviga->setAttribute('class', 'positionNaviga');
+$naviga->addChild(new CText(translateFN('Naviga')));
+
+/*
+ * link Agisci
+ */
+$agisci=CDOMElement::create('a','');
+//$agisci->setAttribute(onclick, "toggleElementVisibility('submenu_actions','up')");
+//$agisci->setAttribute('class', "unselectedactions");
+$agisci->addChild(new CText(translateFN('Agisci')));
+
 $content_dataAr = array(
   'chat_link'    => $chat_link,
   'forum_link'   => $forum_link,
@@ -583,7 +640,11 @@ $content_dataAr = array(
   'agenda'       => $user_agenda->getHtml(),
   'events'		 => $user_events->getHtml(),
   'chat_users'   => $online_users,
-  'go_map'		 => $go_map
+  'go_map'		 => $go_map,
+  'edit_profile'=> $edit_profile_link->getHtml(),
+  'agisci' =>$agisci->getHtml(),
+  'naviga'=>$naviga->getHtml(),
+  'home_page' => $home_page_link->getHtml()
 );
 
 ARE::render($layout_dataAr, $content_dataAr);

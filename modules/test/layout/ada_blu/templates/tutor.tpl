@@ -100,9 +100,16 @@
         <!-- MENU A TENDINA -->
         <div id="mainmenu">
             <ul id="menu">
-                <li id="home"> <a href="../../tutor/tutor.php">
+                  
+               
+                <!--<li id="home"> <a href="../../tutor/tutor.php">
                         <i18n>home</i18n>
-                    </a> </li>
+                    </a> </li>-->
+                <li>
+                 <template_field class="template_field" name="home_page">home_page</template_field>
+                </li>
+                <li>
+                
                 <li id="com" class="unselectedcom" onClick="toggleElementVisibility('submenu_com','up')"> <a>
                         <i18n>comunica</i18n>
                     </a> </li>
@@ -114,11 +121,15 @@
                         <i18n>agisci</i18n>
                     </a>
                 </li>
-                <li id="ancora_menuright" onClick="toggleElementVisibility('menuright', 'right');">
+                <!--<li id="ancora_menuright" onClick="toggleElementVisibility('menuright', 'right');">
                     <a>
                         <i18n>Naviga</i18n>
                     </a>
-                </li>
+                </li>-->
+                <li class="iconNaviga">
+                <template_field class="template_field" name="naviga">naviga</template_field>
+              </li>
+              
                 <li id="question_mark" class="unselectedquestion_mark" onClick="toggleElementVisibility('submenu_question_mark','up'); return false;">
                     <a>
                         <i18n>Help</i18n>
@@ -165,10 +176,13 @@
                 <div id="submenu_actions" class="sottomenu sottomenu_off">
                     <div id="_actionscontent">
                         <ul>
-                            <li>
+                           <!-- <li>
                                 <a href="../../tutor/edit_user.php" alt="edit profile">
                                     <i18n>cambia profilo</i18n>
                                 </a>
+                            </li>-->
+                           <li>
+                              <template_field class="template_field" name="edit_profile">edit_profile</template_field>
                             </li>
                             <li>
                               <template_field class="template_field" name="class_student">class_student</template_field>
