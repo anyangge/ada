@@ -39,7 +39,7 @@ $allowedUsersAr = array(AMA_TYPE_SWITCHER);
  * Get needed objects
  */
 $neededObjAr = array(
-    AMA_TYPE_SWITCHER => array('layout', 'user', 'course_instance')
+    AMA_TYPE_SWITCHER => array('layout', 'user', 'course', 'course_instance')
 );
 
 require_once ROOT_DIR . '/include/module_init.inc.php';
