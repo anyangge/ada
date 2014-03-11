@@ -139,6 +139,37 @@ class MultiPort
     }
 
     /*
+     * get_instance_data
+    *
+    * @access public
+    *
+    * @param $client
+    * @param $id_course_instance
+    *
+    * @return true if instance exists
+    */
+    public function course_instance_data_get_on_tester($id_course_instance,$client) {
+    
+    
+    	$tester_dsn = self::getDSN($client);
+    	if($tester_dsn == null) {
+    		return ADA_ERROR_ID_CONNECTING_TO_DB;
+    	}
+    	$tester_dh = AMA_DataHandler::instance($tester_dsn);
+    	$result = $tester_dh->course_instance_get($id_course_instance);
+    	return $result;
+    	/*
+    	 *
+    	if ($result < 3 || $result > 0) {
+    	return true;
+    	} else {
+    	return false;
+    	}
+    	*/
+    }
+    
+    
+    /*
      * get_cod_subscribed
      *
      * @access public

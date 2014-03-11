@@ -4330,6 +4330,46 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
 
         return $result;
     }
+    
+   /*
+    * get_cod_subscribed
+    *
+    * @access public
+    *
+    * @param $code
+    * @param $id_course_instance
+    *
+    * @return true if $code already exists in $id_course_instance
+    */
+    public function get_cod_subscribed($code,$id_course_instance) {
+    	/**
+    	 * codeman module is needed for this method
+    	 */
+    	if (!defined('MODULES_CODEMAN') || MODULES_CODEMAN===FALSE) {
+    		return false;
+    	}
+    	
+    	//tries to connect to db
+    	$db =& $this->getConnection();
+    	// if something goes wrong, $db is an error object
+    	// so we return the error object
+    	if ( AMA_DB::isError( $db ) ) return $db;
+    
+    	// verify key uniqueness (index)
+    	$sql = "select id_istanza_corso from iscrizioni where id_istanza_corso=\"$id_course_instance\" and codice=\"$code\"";
+    	$id =  $db->getOne($sql);
+    
+    	if (AMA_DB::isError($id)) {
+    		return new AMA_Error(AMA_ERR_GET);
+    	}
+    
+    	if ($id==$id_course_instance) {
+    		return true;
+    	}else {
+    		return false;
+    	}
+    }
+    
     /**
      * pre-subscribe a student
      *
@@ -4338,37 +4378,38 @@ abstract class AMA_Tester_DataHandler extends Abstract_AMA_DataHandler {
      * @param $id_studente - student id
      * @param $id_corso    - course instance id
      * @param $livello     - level of subscription (0=beginner, 1=intermediate, 2=advanced)
+     * @param $codice      - code of subscription, generated using modules/code_man 
      *
      * @return true on success, an AMA_Error object if something goes wrong
      */
-    public function course_instance_student_presubscribe_add($id_istanza_corso, $id_studente, $livello=0) {
-        //tries to connect to db
-        $db =& $this->getConnection();
-        // if something goes wrong, $db is an error object
-        // so we return the error object
-        if ( AMA_DB::isError( $db ) ) return $db;
-
-        // verify key uniqueness (index)
-        $sql = "select id_istanza_corso from iscrizioni where id_istanza_corso=$id_istanza_corso and id_utente_studente=$id_studente";
-        $id =  $db->getOne($sql);
-
-        if (AMA_DB::isError($id)) {
-            return new AMA_Error(AMA_ERR_GET);
-        }
-
-        if ($id) {
-            return new AMA_Error(AMA_ERR_UNIQUE_KEY);
-        }
-
-        // insert a row into table iscrizioni
-        $sql1 =  "insert into iscrizioni (id_utente_studente, id_istanza_corso, livello, status)";
-        $sql1 .= " values ($id_studente, $id_istanza_corso, $livello, 1);";
-        $res = $db->query($sql1);
-        // FIXME: usare executeCritical?
-        if (AMA_DB::isError($res)) {// || $db->affectedRows()==0)
-            return new AMA_Error(AMA_ERR_ADD);
-        }
-        return true;
+    public function course_instance_student_presubscribe_add($id_istanza_corso, $id_studente, $livello=0, $codice='') {
+    	//tries to connect to db
+    	$db =& $this->getConnection();
+    	// if something goes wrong, $db is an error object
+    	// so we return the error object
+    	if ( AMA_DB::isError( $db ) ) return $db;
+    
+    	// verify key uniqueness (index)
+    	$sql = "select id_istanza_corso from iscrizioni where id_istanza_corso=$id_istanza_corso and id_utente_studente=$id_studente";
+    	$id =  $db->getOne($sql);
+    
+    	if (AMA_DB::isError($id)) {
+    		return new AMA_Error(AMA_ERR_GET);
+    	}
+    
+    	if ($id) {
+    		return new AMA_Error(AMA_ERR_UNIQUE_KEY);
+    	}
+    	$data_iscrizione = time();
+    	// insert a row into table iscrizioni
+    	$sql1 =  "insert into iscrizioni (id_utente_studente, id_istanza_corso, livello, status, codice, data_iscrizione)";
+    	$sql1 .= " values ($id_studente, $id_istanza_corso, $livello, 1, \"$codice\", $data_iscrizione);";
+    	$res = $db->query($sql1);
+    	// FIXME: usare executeCritical?
+    	if (AMA_DB::isError($res)) {// || $db->affectedRows()==0)
+    		return new AMA_Error(AMA_ERR_ADD);
+    	}
+    	return true;
     }
 
     /**
