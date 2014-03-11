@@ -63,15 +63,11 @@ class UserRegistrationForm extends FForm
              '0');
 
         $this->addTextInput('matricola', translateFN('numero di matricola'));
-/*
- * 
+
         if ($cod) {
             $this->addTextInput('codice', translateFN('Codice'))
                  ->setRequired()
                  ->setValidator(FormValidator::NOT_EMPTY_STRING_VALIDATOR);
         }
-
- * 
- */
     }
 }
