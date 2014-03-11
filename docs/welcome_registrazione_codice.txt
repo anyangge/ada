@@ -1,0 +1,4 @@
+%s ti dà il benvenuto nella piattaforma dei corsi di lingua italiana online.
+
+Per registrarti, inserisci il codice che ti è stato inviato e completa il modulo con i dati richiesti. 
+Riceverai una mail di conferma e potrai accedere al corso.
