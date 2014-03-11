@@ -1,0 +1,45 @@
+Installazione modulo di registrazione (esterno ad anagrafica ADA)
+
+PREREQUISITI:
+
+- ADA v19
+- Se l'installazione non supporta i moduli, si prega di aggiornare i seguenti file
+di installazione (prendendoli dall'ultima versione di ADA)
+
+* include/Forms/lib
+* include/layout_classes.inc.php
+* include/output_classes.inc.php
+* config/ada_config.inc.php
+* config/config_install.inc.php
+
+****************************************************
+
+INSTALLAZIONE:
+
+- Assicurarsi che il file browsing/ICON_cod.txt sia leggibile e scrivibile dal webserver
+* chmod a+w browsing/ICON_cod.txt dovrebbe essere sufficiente 
+
+- Copiare i file tutti i file contenuti in
+* modules/registration/code_man
+
+- Assicurarsi di creare una cartella layout per ogni layout esistente
+(o usato) nell'installazione
+
+
+****************************************************
+
+CONFIGURAZIONE:
+
+- Aggiungere (o creare) nel file config/config_modules.inc.php
+
+//defines for modules code_man
+	define('MODULES_CODEMAN_PATH', ROOT_DIR.'/modules/code_man');
+	if (file_exists(MODULES_CODEMAN_PATH.'/index.php')) {
+		define('MODULES_CODEMAN', true);
+		define('MODULES_CODEMAN_HTTP', HTTP_ROOT_DIR.'/modules/code_man');
+	}
+	else {
+		define('MODULES_CODEMAN', false);
+	}
+
+****************************************************
