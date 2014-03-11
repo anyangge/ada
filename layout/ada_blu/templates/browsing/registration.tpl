@@ -23,9 +23,6 @@
                 <!--dati utente-->
                 <div id="user_data" class="user_data_default">
 
-                    <span>
-                        <template_field class="template_field" name="message">message</template_field>
-                    </span>
                     <i18n>utente: </i18n>
                     <span>
                         <template_field class="template_field" name="user_name">user_name</template_field>
@@ -58,6 +55,11 @@
                     <div id="help">
                         <template_field class="template_field" name="help">help</template_field>
                     </div>
+					<!-- message -->
+	                 <div class="contentlabel">
+	                     <template_field class="template_field" name="message">message</template_field>
+	                 </div>
+	            	<!-- /message -->
                     <div id="data">
                         <template_field class="template_field" name="data">data</template_field>
                     </div>                    
