@@ -106,12 +106,27 @@
                             <template_field class="template_field" name="bookmark">bookmark</template_field>
                         </span>
                     </div>
+                    
+                    <div class="navbar">
+	                    <div class="go_next">
+							<template_field class="template_field" name="go_next">go_next</template_field>
+						</div>					
+						<div class="go_prev">
+							<a href='javascript:history.back();'><i18n>Torna</i18n></a>
+						</div>
+					</div>
+                    
                     <div class="firstnode">
                         <template_field class="template_field" name="text">text</template_field>
                     </div>
 
-                    <div id="go_next">
-						<template_field class="template_field" name="go_next">go_next</template_field>
+					<div class="navbar">
+	                    <div class="go_next">
+							<template_field class="template_field" name="go_next">go_next</template_field>
+						</div>					
+						<div class="go_prev">
+							<a href='javascript:history.back();'><i18n>Torna</i18n></a>
+						</div>
 					</div>
 
 		    <hr>
