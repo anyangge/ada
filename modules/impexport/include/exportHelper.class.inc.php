@@ -166,7 +166,7 @@ class exportHelper
 		// end get external resources
 
 		// get extended nodes
-		$extendedNode =& $dh->get_extended_node($nodeId);
+        $extendedNode =& $dh->get_extended_node($nodeId);
 		if (!empty($extendedNode) && !AMA_DB::isError($extendedNode))
 		{
 			$extendedNode['id_node'] = self::stripOffCourseId($course_id, $extendedNode['id_node']);
@@ -574,6 +574,12 @@ class exportHelper
 			}
 			unset ($regExp);
 		}
+		/**
+		 * Last check: if Substituted filename does not 
+		 * start with a '/' prepend the slash to the returned string
+		 */
+		if ($value{0}!=='/') $value = '/'.$value;
+		
 		return $value;
 	}
 }
