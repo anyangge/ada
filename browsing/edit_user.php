@@ -300,33 +300,21 @@ $layout_dataAr['JS_filename'] = array(
 		ROOT_DIR.'/js/include/jquery/pekeUpload/pekeUpload.js'
 );
 
-if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) 
-     {   
-       $layout_dataAr['JS_filename'][]=  ROOT_DIR.'/js/browsing/edit_user.js';
-     }
-
 $layout_dataAr['CSS_filename'] = array(
 		JQUERY_UI_CSS,
 		ROOT_DIR.'/js/include/jquery/pekeUpload/pekeUpload.css'
 );
 
-
-
-if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) 
-     {   
-       $layout_dataAr['CSS_filename'][]=  ROOT_DIR.'/layout/ada_blu/css/browsing/edit_user.css';
-     }
-     
 $maxFileSize = (int) (ADA_FILE_UPLOAD_MAX_FILESIZE / (1024*1024));
 
-if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
-{
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) {
+	$layout_dataAr['CSS_filename'][]=  ROOT_DIR.'/layout/'.$template_family.'/css/browsing/edit_user.css';
+	$layout_dataAr['JS_filename'][]=  ROOT_DIR.'/js/browsing/edit_user.js';
     $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile.'?self_instruction=1');
-}
-else
-{
+} else {
     $edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile);
 }
+
 $edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
 
 /*
@@ -367,7 +355,7 @@ $naviga->setAttribute('class', 'positionNaviga');
 $naviga->addChild(new CText(translateFN('Naviga')));
 $naviga=$naviga->getHtml();
 
-   /*
+/*
  * Go back link
  */
 $navigation_history = $_SESSION['sess_navigation_history'];
@@ -386,7 +374,6 @@ if(!strstr($last_visited_node,'main_index.php'))
     $corsi='';
     $naviga=$go_back_link;
 }
-
 
 /**
  * do the form have to be submitted with an AJAX call?
