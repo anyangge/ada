@@ -60,7 +60,7 @@ include_once ROOT_DIR.'/include/bookmark_class.inc.php';
 $self_instruction=$courseInstanceObj->self_instruction;  //if a course instance is self_instruction
 if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
 {
-    $self='GeneralSelfInstruction';
+    $self='defaultSelfInstruction';
 }
 else
 {
@@ -598,22 +598,12 @@ else
 }
 $edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
 
-/*
- * Home Page
- */
-
-$home_page=$userObj->getHomePage();
-$home_page_link = CDOMElement::create('a', 'href:'.$home_page);
-$home_page_link->setAttribute('class', 'iconHomePage');
-
-$home_page_link->addChild(new CText(translateFN('Home')));
 
 /*
  * link Naviga
  */
 $naviga=CDOMElement::create('a','#');
 $naviga->setAttribute(onclick, "toggleElementVisibility('menuright', 'right')");
-$naviga->setAttribute('class', 'positionNaviga');
 $naviga->addChild(new CText(translateFN('Naviga')));
 
 /*
@@ -644,9 +634,8 @@ $content_dataAr = array(
   'go_map'		 => $go_map,
   'edit_profile'=> $edit_profile_link->getHtml(),
   'agisci' =>$agisci->getHtml(),
-  'naviga'=>$naviga->getHtml(),
-  'home_page' => $home_page_link->getHtml()
-);
+  'naviga'=>$naviga->getHtml()
+  );
 
 ARE::render($layout_dataAr, $content_dataAr);
 

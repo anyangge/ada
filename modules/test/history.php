@@ -46,7 +46,7 @@ $GLOBALS['dh'] = AMATestDataHandler::instance(MultiPort::getDSN($_SESSION['sess_
 $self_instruction=$courseInstanceObj->self_instruction;  //if a course instance is self_instruction
 if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
 {
-    $self='GeneralSelfInstruction';
+    $self='tutorSelfInstruction';
 }
 else
 {
@@ -91,17 +91,6 @@ else
 $edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
 
 /*
- * Home Page
- */
-
-$home_page=$userObj->getHomePage();
-$home_page_link = CDOMElement::create('a', 'href:'.$home_page);
-$home_page_link->setAttribute('class', 'iconHomePage');
-
-$home_page_link->addChild(new CText(translateFN('Home')));
-
-
-/*
  * link Naviga
  
 $naviga=CDOMElement::create('a','#');
@@ -127,8 +116,7 @@ $content_dataAr = array(
     'author' => $author,
     'node_level' => 'livello nodo',
     'edit_profile'=> $edit_profile_link->getHtml(),
-    'naviga'=>$go_back_link->getHtml(),
-    'home_page' => $home_page_link->getHtml()
+    'naviga'=>$go_back_link->getHtml()
     //'course_title' => '<a href="'.HTTP_ROOT_DIR.'/tutor/tutor.php">'.translateFN('Modulo Tutor').'</a> > ',
     //'media' => 'media',
 );

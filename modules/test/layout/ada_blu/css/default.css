@@ -465,19 +465,6 @@ background: url(../../../../../layout/ada_blu/img/back.png) no-repeat center lef
 
 .preview_forum { border:1px solid #808080; padding: 5px; margin:3px 35px; }
 
-.iconNaviga{
-    
-        padding-left: 20px;
-        cursor: pointer;
-	background: url('../img/naviga.png') no-repeat center left;
-	width:75px;
-	height:50px;
-	display:inline-block;
-}
-
-.positionNaviga {
-    margin-left:38px;
-}
 .title{
     margin-top:-280px;
 }

@@ -288,22 +288,13 @@ $go_print = "<a href=\" view.php?id_node=" . $sess_id_node . "&op=print\" target
 costruzione della pagina HTML
 */
 
-/*
- * Home Page
- */
 
-$home_page=$userObj->getHomePage();
-$home_page_link = CDOMElement::create('a', 'href:'.$home_page);
-$home_page_link->setAttribute('class', 'iconHomePage');
-
-$home_page_link->addChild(new CText(translateFN('Home')));
 
 /*
  * link Naviga
  */
 $naviga=CDOMElement::create('a','#');
 $naviga->setAttribute(onclick, "toggleElementVisibility('menuright', 'right')");
-$naviga->setAttribute('class', 'positionNaviga');
 $naviga->addChild(new CText(translateFN('Naviga')));
 
 //$search_word=CDOMElement::create('label','');
@@ -331,7 +322,6 @@ $content_dataAr = array(
   'messages'=>$user_messages->getHtml(),
   'agenda'=>$user_agenda->getHtml(),
   'events'=>$user_events->getHtml(),
-  'home_page' => $home_page_link->getHtml(),
   'naviga'=>$naviga->getHtml(),
   'search_word' =>'',
   'chat_users'=>$online_users

@@ -74,9 +74,9 @@
             <!-- com_tools -->
             <div id="com_tools">
                 <div id="topcom_t"> </div>
-                <div id="com_toolscontent">
+                <!--<div id="com_toolscontent">
                     <template_field class="microtemplate_field" name="com_tools">com_tools</template_field>
-                </div>
+                </div>-->
                 <div id="bottomcom_t"> </div>
             </div>
             <!-- /com_tools -->
@@ -86,7 +86,7 @@
                 <div id="menurightcontent">
                     <ul>
                         <li class="close"> <a href="#" onClick="toggleElementVisibility('menuright', 'right');">
-                                </i18n>
+                                <i18n>
                                 chiudi
                                 </i18n>
                             </a> </li>
@@ -105,14 +105,16 @@
                 <li id="home"> <a href="../../tutor/tutor.php">
                         <i18n>home</i18n>
                     </a> </li>
-               
+                <li>
+                 <template_field class="template_field" name="home_page">home_page</template_field>
+                </li>
                 <li>
                 
-                <li id="com" class="unselectedcom" onClick="toggleElementVisibility('submenu_com','up')"> <a>
-                        <i18n>comunica</i18n>
+               <li id="com" class="unselectedcom" onClick="toggleElementVisibility('submenu_com','up')"> <a>
+                        <i18n></i18n>
                     </a> </li>
                 <li id="tools" class="unselectedtools" onClick="toggleElementVisibility('submenu_tools','up')"> <a>
-                        <i18n>strumenti</i18n>
+                        <i18n></i18n>
                     </a> </li>
                 <li id="actions" class="unselectedactions" onClick="toggleElementVisibility('submenu_actions','up')">
                     <a>

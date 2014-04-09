@@ -478,23 +478,7 @@ background: url(../../img/back.png) no-repeat center left; display:block; paddin
        
 }
 
-.iconNaviga{
-    
-        padding-left: 20px;
-        cursor: pointer;
-	background: url('../../img/naviga.png') no-repeat center left;
-	width:75px;
-	height:50px;
-	display:inline-block;
-}
 
-.positionNaviga {
-    margin-left:38px;
-}
-.positionCorsi
-{
-   margin-left:-48px; 
-}
 .GlossarySelfInstructionPosition {
     margin-top: -315px;
     background-color: White;
@@ -514,8 +498,4 @@ background: url(../../img/back.png) no-repeat center left; display:block; paddin
     text-transform:uppercase;
 }
 
-.label_word
-{
-    
-}
 

@@ -42,7 +42,7 @@ $courseInstances = array();
 if (count($serviceProviders) == 1) {
     $provider_dh = AMA_DataHandler::instance(MultiPort::getDSN($serviceProviders[0]));
     $courseInstances = $provider_dh->get_course_instances_active_for_this_student($userObj->getId());
-//    $courseInstances = $provider_dh->get_course_instances_for_this_student($userObj->getId());
+//  $courseInstances = $provider_dh->get_course_instances_for_this_student($userObj->getId());
 } else {
     foreach ($serviceProviders as $Provider) {
         $provider_dh = AMA_DataHandler::instance(MultiPort::getDSN($Provider));

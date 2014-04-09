@@ -42,8 +42,7 @@ include_once 'include/browsing_functions.inc.php';
 $self_instruction=$courseInstanceObj->self_instruction;  //if a course instance is self_instruction
 if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
 {
-    //$self='defaultSelfInstruction';
-    $self='GeneralSelfInstruction';
+   $self='defaultSelfInstruction';
 }
 else
 {
@@ -268,21 +267,12 @@ else
 }
 $edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
 
-/*
- * Home Page
- */
 
-$home_page=$userObj->getHomePage();
-$home_page_link = CDOMElement::create('a', 'href:'.$home_page);
-$home_page_link->setAttribute('class', 'iconHomePage');
-
-$home_page_link->addChild(new CText(translateFN('Home')));
 
 /*
  * link corsi
  */
 $corsi=CDOMElement::create('a','href:../info.php');
-$corsi->setAttribute('class', 'positionCorsi');
 $corsi->addChild(new CText(translateFN('Corsi')));
 
 /*
@@ -338,9 +328,8 @@ $node_data = array(
                    'title'=>$node_title,
                    'edit_profile'=> $edit_profile_link->getHtml(),
                    'corsi'=>$corsi->getHtml(),
-                   'agisci' =>$agisci->getHtml(),
-                   'home_page' => $home_page_link->getHtml()
-                   //'mylog'=>$mylog,
+                   'agisci' =>$agisci->getHtml()
+                    //'mylog'=>$mylog,
                   );
 
                    if ($com_enabled){

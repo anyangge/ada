@@ -91,7 +91,7 @@
                     <ul>
                         <li class="close">
                             <a href="#" onClick="toggleElementVisibility('menuright', 'right');">
-                                </i18n>chiudi</i18n>
+                                <i18n>chiudi</i18n>
                             </a>
                         </li>
                         <li class="_menu">
