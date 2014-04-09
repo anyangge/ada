@@ -107,12 +107,18 @@
                         </span>
                     </div>
                     
-                    <div class="navbar">
-	                    <div class="go_next">
-							<template_field class="template_field" name="go_next">go_next</template_field>
-						</div>					
-						<div class="go_prev">
-							<a href='javascript:history.back();'><i18n>Torna</i18n></a>
+                    <div class="navbar_top">
+						<div class="previous_arrow">
+							<div class="go_prev">
+								<a href='javascript:history.back();'><i18n>Torna</i18n></a>
+							</div>
+
+						</div>
+						
+						<div class="next_arrow">				
+	                    	<div class="go_next">
+								<template_field class="template_field" name="go_next">go_next</template_field>
+							</div>							
 						</div>
 					</div>
 					
@@ -120,35 +126,50 @@
                         <template_field class="template_field" name="text">text</template_field>
                     </div>
 
-					<div class="navbar">
-	                    <div class="go_next">
-							<template_field class="template_field" name="go_next">go_next</template_field>
-						</div>					
-						<div class="go_prev">
-							<a href='javascript:history.back();'><i18n>Torna</i18n></a>
+
+					<div class="navbar_bottom">
+						<div class="previous_arrow">
+							<div class="go_prev">
+								<a href='javascript:history.back();'><i18n>Torna</i18n></a>
+							</div>
+						</div>
+						
+						<div class="next_arrow">
+							<div class="go_next">
+								<template_field class="template_field" name="go_next">go_next</template_field>
+							</div>				
+
 						</div>
 					</div>
 
-		    <hr>
-		    <div id="index_in_text">
+
+
+		   <!-- <hr>
+		    
+			
+			
+			
+			<div id="index_in_text">
 		      <h3><i18n>note di classe</i18n></h3>
                             <template_field class="template_field" name="notes">notes</template_field>
+			-->
+			
 			    <!--h3><i18n>Approfondimenti:</i18n></h3-->
 			    <!--template_field class="template_field" name="index">index</template_field-->
-		  </div>
+		 <!--  </div>
 		  <div id="exercises_in_text">
 		      <h3><i18n>note personali</i18n></h3>
-		       <template_field class="template_field" name="personal">personal</template_field>
+		       <template_field class="template_field" name="personal">personal</template_field> -->
 			<!--template_field class="template_field" name="exercises">exercises</template_field-->
-		  </div>
+		 <!-- </div> -->
 
                 </div>
-                <div id="bottomcont">
-                </div>
+                <!-- <div id="bottomcont">
+                </div> -->
             </div>
             <!--  / contenuto -->
             <!-- com_tools -->
-            <div id="com_tools">
+           <!--  <div id="com_tools">
                 <div id="topcom_t">
                 </div>
                 <div id="com_toolscontent">
@@ -157,6 +178,7 @@
                 <div id="bottomcom_t">
                 </div>
             </div>
+			-->
             <!-- /com_tools -->
             <!-- menudestra -->
             <div id="menuright" class="sottomenu_off menuright_view"> 
