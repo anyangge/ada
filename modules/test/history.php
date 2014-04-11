@@ -71,7 +71,7 @@ $path = $return['path'];
 $navigation_history = $_SESSION['sess_navigation_history'];
 $last_visited_node  = $navigation_history->lastModule();
 $go_back_link = CDOMElement::create('a', 'href:'.$last_visited_node);
-$go_back_link ->setAttribute('class', 'positionNaviga');
+//$go_back_link ->setAttribute('class', 'positionNaviga');
 $go_back_link->addChild(new CText(translateFN('Naviga')));
 
 /*
