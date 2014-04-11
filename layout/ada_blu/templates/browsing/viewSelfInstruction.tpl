@@ -407,16 +407,7 @@ Curabitur mollis egestas leo. Sed fermentum quam urna, in cursus metus posuere e
 							<li>
                                 <template_field class="template_field" name="test_history">test_history</template_field>
                             </li>
-							<li>
-                              <!--  <template_field class="template_field" name="survey_history">survey_history</template_field>
-                            </li>-->
-                            <!--
-                            <li>
-                                <a href="lemming.php">
-                                    <i18n>lessico</i18n>
-                                </a>
-                            </li>
-                            -->
+                          
                             <li>
                                 <a href="search.php">
                                     <i18n>cerca</i18n>

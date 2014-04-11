@@ -467,55 +467,5 @@ background: url(../../img/back.png) no-repeat center left; display:block; paddin
 	}
 
  
-.iconHomePage { 
-   
-        padding-left: 43px;
-        cursor: pointer;
-	background: url('../../img/home.png') no-repeat center left;
-	width:40px;
-	height:50px;
-	display:inline-block;
-       
-}
 
-.iconNaviga{
-    
-        padding-left: 20px;
-        cursor: pointer;
-	background: url('../../img/naviga.png') no-repeat center left;
-	width:75px;
-	height:50px;
-	display:inline-block;
-}
-
-.positionNaviga {
-    margin-left:38px;
-}
-.positionCorsi
-{
-   margin-left:-48px; 
-}
-.GlossarySelfInstructionPosition {
-    margin-top: -315px;
-    background-color: White;
-}
-
-
-.firstSearch { margin-top: -310px; padding-top: 15px;}
-
-.search_results_SelfInstruction
-{
-    margin-top: 50px;
-}
-.labelClass
-{
- 
-    font-weight:bold;
-    text-transform:uppercase;
-}
-
-.label_word
-{
-    
-}
 
