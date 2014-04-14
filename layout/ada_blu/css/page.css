@@ -28,9 +28,12 @@ colgroup { }
 col { }
 caption {text-align: center; border-collapse: collapse; font-weight: bold; font-style: inherit;	font-size: 100%; line-height: 2; font-family: inherit;	vertical-align: baseline;	text-transform: uppercase;}
 
-a:link {color: Black; text-decoration: underline; }
-a:hover {color: Red; }
-a:visited {text-decoration: none; }
+a:link {color: #AB3737; text-decoration: underline; }
+a:hover {color: #288E37; }
+a:visited {
+color: #5D66A7;
+text-decoration: none; 
+}
 
 .selected { font-weight: bold; }
 .node_not_visited { font-weight: lighter;}
@@ -289,7 +292,7 @@ UL#menu LI A {text-transform: lowercase; color:#fff; font-weight:bold; text-deco
 .microtemplate_field {}
 
 UL#menu a:link, #menu a:visited {  color: White;}
-UL#menu a:hover { color: #eaff00; }
+UL#menu a:hover { color: #ffdc3a; }
 
 #selfclose A { background: url(../img/selfclose.png) no-repeat center left; display:block; padding:0 0 0 40px;  }
 #new A		 { background: url(../img/azioni.png) no-repeat center left; display:block; padding:0 0 0 40px;  }
@@ -363,7 +366,7 @@ UL#menu a:hover { color: #eaff00; }
 #_toolscontent a:hover  ,
 #_actionscontent a:hover ,
 #_question_markcontent a:hover
-{color:#eaff00}
+{color:#ffdc3a;}
 
 #_comcontent li ,
 #_toolscontent li ,
