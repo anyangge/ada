@@ -275,11 +275,7 @@ $edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
 $corsi=CDOMElement::create('a','href:../info.php');
 $corsi->addChild(new CText(translateFN('Corsi')));
 
-/*
- * link Agisci
- */
-$agisci=CDOMElement::create('a','');
-$agisci->addChild(new CText(translateFN('Agisci')));
+
 /* 3.
 HTML page building
 */
@@ -327,8 +323,8 @@ $node_data = array(
                    'myforum'=>$my_forum,
                    'title'=>$node_title,
                    'edit_profile'=> $edit_profile_link->getHtml(),
-                   'corsi'=>$corsi->getHtml(),
-                   'agisci' =>$agisci->getHtml()
+                   'corsi'=>$corsi->getHtml()
+                   //'agisci' =>$agisci->getHtml()
                     //'mylog'=>$mylog,
                   );
 

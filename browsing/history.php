@@ -184,16 +184,6 @@ $edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
  */
 $corsi=CDOMElement::create('a','href:../info.php');
 $corsi->addChild(new CText(translateFN('Corsi')));
-
-
-/*
- * link Agisci
- */
-$agisci=CDOMElement::create('a','');
-$agisci->addChild(new CText(translateFN('Agisci')));
-
-
-
 $banner = include ROOT_DIR . '/include/banner.inc.php';
 $content_dataAr = array(
     'chat_link' => $chat_link,
@@ -209,8 +199,8 @@ $content_dataAr = array(
     'agenda' => $user_agenda->getHtml(),
     'chat_users' => $online_users,
     'edit_profile'=> $edit_profile_link->getHtml(),
-    'corsi'=>$corsi->getHtml(),
-    'agisci' =>$agisci->getHtml()
+    'corsi'=>$corsi->getHtml()
+    //'agisci' =>$agisci->getHtml()
     );
 /**
  * Sends data to the rendering engine

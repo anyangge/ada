@@ -52,16 +52,7 @@ require_once ROOT_DIR . '/include/FileUploader.inc.php';
 require_once ROOT_DIR . '/include/Forms/UserProfileForm.inc.php';
 
 
-
-$self_instruction=$_GET['self_instruction'];   //if a course instance is self_instruction
-if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
-{
-    $self='defaultSelfInstruction';
-}
-else
-{
     $self = whoami();
-}
 
 $languages = Translator::getLanguagesIdAndName();
 
@@ -304,9 +295,17 @@ $layout_dataAr['CSS_filename'] = array(
 		JQUERY_UI_CSS,
 		ROOT_DIR.'/js/include/jquery/pekeUpload/pekeUpload.css'
 );
-
+$self_instruction=$_GET['self_instruction'];   //if a course instance is self_instruction
+if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
+{
+    $self='editUserSelfInstruction';
+}
+else
+{
+    $self = whoami();
+}
 $maxFileSize = (int) (ADA_FILE_UPLOAD_MAX_FILESIZE / (1024*1024));
-
+$edit_profile=$userObj->getEditProfilePage();
 if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) {
 	$layout_dataAr['CSS_filename'][]=  ROOT_DIR.'/layout/'.$template_family.'/css/browsing/edit_user.css';
 	$layout_dataAr['JS_filename'][]=  ROOT_DIR.'/js/browsing/edit_user.js';
@@ -330,11 +329,6 @@ $corsi=CDOMElement::create('a','href:../info.php');
 $corsi->addChild(new CText(translateFN('Corsi')));
 $corsi=$corsi->getHtml();
 
-/*
- * link Agisci
- */
-$agisci=CDOMElement::create('a','');
-$agisci->addChild(new CText(translateFN('Agisci')));
 
 $navigation_history = $_SESSION['sess_navigation_history'];
 $last_visited_node  = $navigation_history->lastModule();
@@ -354,7 +348,7 @@ $naviga=$naviga->getHtml();
 $navigation_history = $_SESSION['sess_navigation_history'];
 $last_visited_node  = $navigation_history->lastModule();
 $go_back_link = CDOMElement::create('a', 'href:'.$last_visited_node);
-$go_back_link ->setAttribute('class', 'positionNaviga');
+//$go_back_link ->setAttribute('class', 'positionNaviga');
 $go_back_link->addChild(new CText(translateFN('Naviga')));
 $go_back_link=$go_back_link->getHtml();
 
@@ -392,7 +386,6 @@ $content_dataAr = array(
     'help' => $help,
     'corsi'=>$corsi,
     'edit_profile'=> $edit_profile_link->getHtml(),
-    'agisci' =>$agisci->getHtml(),
     'naviga'=>$naviga
    );
 

@@ -606,13 +606,6 @@ $naviga=CDOMElement::create('a','#');
 $naviga->setAttribute(onclick, "toggleElementVisibility('menuright', 'right')");
 $naviga->addChild(new CText(translateFN('Naviga')));
 
-/*
- * link Agisci
- */
-$agisci=CDOMElement::create('a','');
-//$agisci->setAttribute(onclick, "toggleElementVisibility('submenu_actions','up')");
-//$agisci->setAttribute('class', "unselectedactions");
-$agisci->addChild(new CText(translateFN('Agisci')));
 
 $content_dataAr = array(
   'chat_link'    => $chat_link,
@@ -633,7 +626,6 @@ $content_dataAr = array(
   'chat_users'   => $online_users,
   'go_map'		 => $go_map,
   'edit_profile'=> $edit_profile_link->getHtml(),
-  'agisci' =>$agisci->getHtml(),
   'naviga'=>$naviga->getHtml()
   );
 
