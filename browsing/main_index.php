@@ -35,13 +35,13 @@ $neededObjAr = array(
   AMA_TYPE_AUTHOR  => array('node','layout','course')
 );
 
-/* $neededObjAr = array(
+$neededObjAr = array(
   AMA_TYPE_VISITOR => array('layout','course'),
   AMA_TYPE_STUDENT => array('layout','tutor','course','course_instance'),
   AMA_TYPE_TUTOR   => array('layout','course','course_instance'),
   AMA_TYPE_AUTHOR  => array('layout','course')
 );
-*/
+
 
 /**
  * Performs basic controls before entering this module
@@ -607,6 +607,7 @@ $naviga->setAttribute(onclick, "toggleElementVisibility('menuright', 'right')");
 $naviga->addChild(new CText(translateFN('Naviga')));
 
 
+
 $content_dataAr = array(
   'chat_link'    => $chat_link,
   'forum_link'   => $forum_link,
@@ -627,7 +628,7 @@ $content_dataAr = array(
   'go_map'		 => $go_map,
   'edit_profile'=> $edit_profile_link->getHtml(),
   'naviga'=>$naviga->getHtml()
-  );
+);
 
 ARE::render($layout_dataAr, $content_dataAr);
 

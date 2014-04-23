@@ -42,7 +42,7 @@ $neededObjAr = array(
 );
 
 require_once ROOT_DIR . '/include/module_init.inc.php';
-
+//$self = whoami();
 include_once 'include/browsing_functions.inc.php';
 require_once ROOT_DIR . '/include/FileUploader.inc.php';
 
@@ -50,10 +50,7 @@ require_once ROOT_DIR . '/include/FileUploader.inc.php';
  * YOUR CODE HERE
  */
 require_once ROOT_DIR . '/include/Forms/UserProfileForm.inc.php';
-
-
-    $self = whoami();
-
+$self = whoami();
 $languages = Translator::getLanguagesIdAndName();
 
 /**
@@ -117,6 +114,10 @@ if (!is_null($editUserObj) && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQ
     
     // the standard UserProfileForm is always needed.
     // Let's create it
+    if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
+    {
+        $self = whoami(); //allowing to build action form
+    }
     $form = new UserProfileForm($languages,$allowEditProfile, $allowEditConfirm, $self.'.php');
     unset($user_dataAr['password']);
     $user_dataAr['email'] = $user_dataAr['e_mail'];
@@ -126,7 +127,7 @@ if (!is_null($editUserObj) && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQ
     if (!$editUserObj->hasExtra()) {
     	// user has no extra, let's display it
     	$data = $form->render();
-    } else {
+       } else {
     	require_once ROOT_DIR .'/include/HtmlLibrary/UserExtraModuleHtmlLib.inc.php';
     	
     	// the extra UserExtraForm is needed as well
@@ -154,12 +155,12 @@ if (!is_null($editUserObj) && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQ
 			
 			// if is a subclass of FForm the it's a multirow element
 			$doMultiRowTab = !is_subclass_of($tabsArray[$currTab][1], 'FForm');
-			
+				
 			if ($doMultiRowTab === true)
 			{
 				$extraTableName = $tabsArray[$currTab][1];
 				$extraTableFormClass = "User" . ucfirst ($extraTableName) . "Form";
-				
+			
 				/*
 				 * if extraTableName is not in the linked tables array or there's
 				 * no form classes for the extraTableName skip to the next iteration
@@ -275,6 +276,7 @@ if (!is_null($editUserObj) && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQ
 				$form->fillWithArrayData($user_dataAr);
 			}
 			$data .= $form->render();
+                        
 		}		
 		else $data = 'No form to display :(';
 	} 
@@ -328,6 +330,7 @@ $edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
 $corsi=CDOMElement::create('a','href:../info.php');
 $corsi->addChild(new CText(translateFN('Corsi')));
 $corsi=$corsi->getHtml();
+
 
 
 $navigation_history = $_SESSION['sess_navigation_history'];
@@ -387,7 +390,7 @@ $content_dataAr = array(
     'corsi'=>$corsi,
     'edit_profile'=> $edit_profile_link->getHtml(),
     'naviga'=>$naviga
-   );
+);
 
 /**
  * If it's a switcher the renderer is called by switcher/edit_user.php

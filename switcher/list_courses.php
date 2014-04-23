@@ -96,6 +96,7 @@ if(!MULTIPROVIDER)
    $Li_edit_home_page=$li_edit_home_page->getHtml();
 }
 
+   
 $content_dataAr = array(
     'user_name' => $user_name,
     'user_type' => $user_type,

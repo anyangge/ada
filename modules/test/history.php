@@ -50,7 +50,7 @@ if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction))
 }
 else
 {
-    $self = 'tutor';
+$self = 'tutor';
 }
 
 if (!is_a($course_instanceObj,'Course_instance')) {

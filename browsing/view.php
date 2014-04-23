@@ -70,11 +70,9 @@ if ($userObj instanceof ADAGuest) {
     // $self='tutorSelfInstruction';
 }
 else {
-   $self = whoami(); 
+    $self = whoami();
 }
 
-
-        
 if ($nodeObj->type != ADA_NOTE_TYPE && $nodeObj->type != ADA_PRIVATE_NOTE_TYPE)
 {
 	require_once 'include/DFSNavigationBar.inc.php';
@@ -265,7 +263,7 @@ if ($id_profile == AMA_TYPE_TUTOR || $id_profile == AMA_TYPE_STUDENT) {
 	 * Ci sono anche altri controlli da fare, tipo quelli che stanno nella
 	 * videochat
 	 */
-        $video_chat = '<a href="' . HTTP_ROOT_DIR . '/comunica/videochat.php" target="_blank">' . translateFN('video conference') . '</a>';
+	$video_chat = '<a href="' . HTTP_ROOT_DIR . '/comunica/videochat.php" target="_blank">' . translateFN('video conference') . '</a>';
 	$chat = '<a href="' . HTTP_ROOT_DIR . '/comunica/chat.php" target="_blank">' . translateFN('chat') . '</a>';
 	$go_download = '<a href="' . HTTP_ROOT_DIR . '/browsing/download.php">' . translateFN('file sharing') . '</a>';
 	$send_media = '<a href="' . HTTP_ROOT_DIR . '/services/upload.php">' . translateFN('invia un file') . '</a>';
@@ -335,6 +333,13 @@ switch($id_profile) {
 	   break;
 
 }
+/*  gli studenti dei corsi in autoistruzione non devono poter inviare media etc etc
+		 *  TODO: va riportata la modifica fatta per ADA Icon
+		 * */
+		if ($id_profile == AMA_TYPE_STUDENT && $courseInstanceObj->getSelfInstruction()){
+		  $mod_enabled = FALSE;
+		  $com_enabled = FALSE;
+		} 
 
 		//show course istance name if isn't empty - valerio
 		if (!empty($courseInstanceObj->title)) {
@@ -347,7 +352,7 @@ foreach ($keyAr as $keyword){
 	$linksAr [] = "<a href=\"search.php?s_node_title=$keyword&submit=cerca&l_search=all\">$keyword</a>";
 }
 
-$linked_node_keywords = implode(',',$linksAr);  
+$linked_node_keywords = implode(',',$linksAr);                
 
 /*
  * Edit profile
@@ -568,7 +573,6 @@ switch ($op){
                     $content_dataAr['go_next'] = $navBar->getHtml('next'); // can pass href text as second param
                 }
 
-  
 		ARE::render($layout_dataAR,$content_dataAr, null,$optionsAr);
 
 }

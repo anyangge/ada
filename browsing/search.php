@@ -52,7 +52,7 @@ require_once ROOT_DIR.'/include/HTML_element_classes.inc.php';
  $self = 'guest_view'; FIXME: we have to create a guest_search template
 }
 else { */
- // $self = whoami();
+  //$self = whoami();
 /*} */
 
 // questa versione permette di cercare anche SOLO per nome o per keyword (titolo)
@@ -68,8 +68,6 @@ else
 {
     $self = whoami();
 }
-  
-
   
 if (isset($_REQUEST['submit'])) {
   $out_fields_ar = array('nome','titolo','testo','tipo');

@@ -201,7 +201,7 @@ $content_dataAr = array(
     'edit_profile'=> $edit_profile_link->getHtml(),
     'corsi'=>$corsi->getHtml()
     //'agisci' =>$agisci->getHtml()
-    );
+);
 /**
  * Sends data to the rendering engine
  */

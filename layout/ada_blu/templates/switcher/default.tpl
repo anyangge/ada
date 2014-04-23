@@ -166,7 +166,7 @@
                             <li><a href="../modules/code_man"><i18n>Codici Iscrizione Studenti</i18n></a></li>
                             <li><a href="../modules/impexport/import.php"><i18n>Importa corso</i18n></a></li>
                             <li><a href="../modules/impexport/export.php"><i18n>Esporta corso</i18n></a></li>
-                            <!-- <li><a href="../admin/edit_content.php"><i18n>Edit home page contents</i18n></a></li>-->
+                            <!--<li><a href="../admin/edit_content.php"><i18n>Edit home page contents</i18n></a></li>-->
                             <template_field class="template_field" name="edit_home_page">edit_home_page</template_field>
                             
                             <!--li>

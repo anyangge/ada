@@ -36,7 +36,7 @@ $neededObjAr = array(
 );
 
 require_once ROOT_DIR . '/include/module_init.inc.php';
-
+//$self = whoami();
 include_once 'include/browsing_functions.inc.php';
 
 $self_instruction=$courseInstanceObj->self_instruction;  //if a course instance is self_instruction
@@ -298,11 +298,18 @@ HTML page building
 
          $body_onload = "includeFCKeditor('log_today');";
          $options = array('onload_func' => $body_onload);
-         
+
           if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) 
      {        
      
     $layout_dataAR['JS_filename'] = array(
+        ROOT_DIR.'/js/browsing/mylog.js');   //for defaultSelfInstruction.tpl
+     }
+
+          if($userObj->tipo==AMA_TYPE_STUDENT && ($self_instruction)) 
+     {        
+     
+        $layout_dataAR['JS_filename'] = array(
         ROOT_DIR.'/js/browsing/mylog.js');   //for defaultSelfInstruction.tpl
      }
 
@@ -325,7 +332,7 @@ $node_data = array(
                    'edit_profile'=> $edit_profile_link->getHtml(),
                    'corsi'=>$corsi->getHtml()
                    //'agisci' =>$agisci->getHtml()
-                    //'mylog'=>$mylog,
+                   //'mylog'=>$mylog,
                   );
 
                    if ($com_enabled){
