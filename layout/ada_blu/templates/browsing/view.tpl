@@ -333,9 +333,9 @@
                             <li>
                             <template_field class="template_field" name="chat">chat</template_field>
                             </li>
-                            <li>
+                           <!-- <li>
                             <template_field class="template_field" name="video_chat">video_chat</template_field>
-                            </li>
+                            </li>-->
                             <li>
                                 <a href="download.php">
                                     <i18n>collabora</i18n>
