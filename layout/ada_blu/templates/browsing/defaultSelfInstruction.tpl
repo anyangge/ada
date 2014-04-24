@@ -71,10 +71,8 @@
             <!-- contenuto -->
             <div id="content">
                 <div id="contentcontent" class="contentcontent_default">
-                    <div class="first">
-                        <div id="help">
-                            <template_field class="template_field" name="help">help</template_field>
-                        </div>
+                  <div class="first">
+                       <template_field class="template_field" name="help">help</template_field>
                        <template_field class="template_field" name="data">data</template_field>
                     </div>
                 </div>
@@ -87,19 +85,13 @@
            
             <!-- / menudestra  -->
             <!--glossario-->
-            <div id="content">
-                <div id="contentcontent" class="contentcontent_default content_small">
-                   <div class="first">
-                    </div>
-                     <div id="IndexSelfInstruction">
-                   <template_field class="template_field" name="title">title</template_field>
-                  
+            
+             <div id="content_selfInstruction">    
+                <div id="IndexSelfInstruction">
+                    <template_field class="template_field" name="title">title</template_field>
                     <template_field class="template_field" name="index">index</template_field>
-                    </div>
                 </div>
-                <div id="bottomcont">
-                </div>
-           </div>
+             </div>
         </div>
         
    
