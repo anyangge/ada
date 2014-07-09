@@ -40,6 +40,10 @@
                         <template_field class="template_field" name="status">status</template_field>
                     </span>
                 </div>
+                 <i18n>livello</i18n>: 
+                 <span>
+                    <template_field class="template_field" name="user_level">user_level</template_field>
+                 </span>
             </div>
             <!-- / dati utente -->
                 <!-- label -->
@@ -172,13 +176,11 @@
                 <div id="submenu_actions" class="sottomenu sottomenu_off">
                     <div id="_actionscontent">
                         <ul>
-                           <!-- <li>
-                                <a href="../../tutor/edit_user.php" alt="edit profile">
+                            <li>
+                                <!--a href="../../tutor/edit_user.php" alt="edit profile">
                                     <i18n>cambia profilo</i18n>
-                                </a>
-                            </li>-->
-                           <li>
-                              <template_field class="template_field" name="edit_profile">edit_profile</template_field>
+                                </a-->
+                                <template_field class="template_field" name="edit_user">edit_user</template_field>
                             </li>
                             <li>
                               <template_field class="template_field" name="class_student">class_student</template_field>
