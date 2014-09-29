@@ -20,7 +20,7 @@
         <div class="title_Certificate">
             <template_field class="template_field" name="title">title</template_field>
         </div>
-        <div class="header_Certificate">
+        <div class="user_data">
             <i18n> SI ATTESTA CHE </i18n>
         </div>
         <div class="user_data">
