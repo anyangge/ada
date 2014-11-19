@@ -381,3 +381,4 @@ $content_dataAr = array(
 if ($userObj->getType() != AMA_TYPE_SWITCHER) {
         $menuOptions['self_instruction'] = $self_instruction;
 	ARE::render($layout_dataAr, $content_dataAr,NULL, $optionsAr,$menuOptions);
+}
