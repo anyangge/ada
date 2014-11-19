@@ -6,7 +6,7 @@
 ---------------------------------------------------------------*/
 
 
-.ui.ada.menu { float:left; width: 100%; background-color: teal; color: white; 
+.ui.ada.menu { float:left; width: 100%; color: white; 
     background-image: url("../img/main_menu_bg.gif");
     border-radius:0;
     border-bottom: 1px solid #009F98;
@@ -75,22 +75,38 @@
 /* Menu items
 ===================*/
 
-	.sm-ada a {
+	.sm-ada a,
+	.sm-ada .ui.search.input span {
 		padding:11px 20px;
-		color:#555;
+		color:#fff;
 		font-size:14px;
 		line-height:17px;
-		font-family: "Helvetica Neue", "Helvetica", Arial;
+		font-family: architects_daughterregular, Verdana, Geneva, Arial, Helvetica, sans-serif;
 		text-transform: capitalize;
-    text-decoration: none;
-    cursor: pointer;
+        text-decoration: none;
+        cursor: pointer;
 		/* font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif; */
 		text-decoration:none;
 	}
-	.sm-ada li.ui.item.dropdown a:hover, .sm-ada a:focus, .sm-ada a:active,
-	.sm-ada a.highlighted {
-		background:#009F98;
-		color:#555;
+	
+	.sm-ada li.ui.item.dropdown a:hover,
+	.sm-ada a.highlighted:hover {
+	   color: #000;
+         background-color: #fff;
+	    /* works for IE 5+. */
+         filter:alpha(opacity=20); 
+         /* works for IE 8. */
+         -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+	}
+
+	.ui.menu.ada .userpopup { width: 10em;
+	                          white-space: nowrap;
+	                          overflow: hidden;
+	                          text-overflow: ellipsis;
+	}
+	
+	.ui.block.header {
+	color: #1665ad !important;
 	}
 	
 	.sm-ada li.ui.item.dropdown ul li.item:hover,
