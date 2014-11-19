@@ -74,20 +74,29 @@
 
 /* Menu items
 ===================*/
+    .sm-ada a,
+    .sm-ada .ui.search.input span {
+        font-family: architects_daughterregular, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    }
+    
+    .sm-ada .ui.search.input span {
+        color: #fff;
+    }
 
-	.sm-ada a,
-	.sm-ada .ui.search.input span {
+	.sm-ada a {
 		padding:11px 20px;
-		color:#fff;
+		color:#555;
 		font-size:14px;
 		line-height:17px;
-		font-family: architects_daughterregular, Verdana, Geneva, Arial, Helvetica, sans-serif;
 		text-transform: capitalize;
-        text-decoration: none;
-        cursor: pointer;
-		/* font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif; */
+	    text-decoration: none;
+	    cursor: pointer;
 		text-decoration:none;
 	}
+/* 	.sm-ada li.ui.item.dropdown a:hover, .sm-ada a:focus, .sm-ada a:active,
+	 {
+	     
+	} */
 	
 	.sm-ada li.ui.item.dropdown a:hover,
 	.sm-ada a.highlighted:hover {
@@ -99,15 +108,15 @@
          -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
 	}
 
-	.ui.menu.ada .userpopup { width: 10em;
-	                          white-space: nowrap;
-	                          overflow: hidden;
-	                          text-overflow: ellipsis;
-	}
+.ui.menu.ada .userpopup { width: 10em;
+                          white-space: nowrap;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+}
 	
-	.ui.block.header {
-	color: #1665ad !important;
-	}
+.ui.block.header {
+color: #1665ad !important;
+}
 	
 	.sm-ada li.ui.item.dropdown ul li.item:hover,
 	.sm-ada li.ui.item.dropdown ul li.item a:hover {
