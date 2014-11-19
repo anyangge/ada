@@ -7,7 +7,7 @@
 
 
 .ui.ada.menu { float:left; width: 100%; background-color: teal; color: white; 
-    
+    background-image: url("../img/main_menu_bg.gif");
     border-radius:0;
     border-bottom: 1px solid #009F98;
     }
