@@ -261,6 +261,7 @@
                   </div>
                   <!-- /accordion -->  
                 </div>
+            </div>
             <!-- / menudestra  -->
         </div>
         <!-- / contenitore -->
@@ -289,6 +290,7 @@
             </div>
         </div>
         <!-- / pannello video -->
+        <div class="clearfix"></div>
         <!-- piede -->
         <div id="footer">
             <template_field class="microtemplate_field" name="footer">footer</template_field>
