@@ -59,6 +59,7 @@ if (count($serviceProviders) == 1) {
 }
  *
  */
+$id_course = (isset ($_GET['id_course']) && intval ($_GET['id_course'])>=0) ? intval ($_GET['id_course']) : -1;
 $providerAr = $common_dh->get_tester_info_from_id_course($id_course);
 $client = $providerAr['puntatore'];
 $provider_dh = AMA_DataHandler::instance(MultiPort::getDSN($client));
@@ -100,10 +101,6 @@ if(!AMA_DataHandler::isError($courseInstances)) {
         $data = translateFN('Non sei iscritto a nessuna classe');
 }
 
-$edit_profile=$userObj->getEditProfilePage();
-$edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile);
-$edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
-
 /*
  * Last access link
  */
@@ -128,7 +125,7 @@ $content_dataAr = array(
     'user_name' => $user_name,
     'user_type' => $user_type,
     'last_visit' => $last_access,
-    'edit_user'=> $edit_profile_link->getHtml(),
+    'edit_profile'=>$userObj->getEditProfilePage(),
     'message' => $message,
     'user_level'=>$user_level,
 //    'iscritto' => $sub_course_data,
@@ -144,7 +141,6 @@ $content_dataAr = array(
     'messages' => $user_messages->getHtml(),
     'agenda' => $user_agenda->getHtml(),
     'events' => $user_events->getHtml(),
-    'submenu_actions' => $submenu_actions,
     'status' => $status
 );
 

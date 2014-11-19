@@ -79,9 +79,6 @@ $EditTranslFr=new EditTranslationForm();
 $dataEdtTslFr=$EditTranslFr->getHtml();
    
 $status = translateFN('translation mode');
-$edit_profile=$userObj->getEditProfilePage();
-$edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile);
-$edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
 
 $content_dataAr = array(
   'banner' => $banner,
@@ -92,7 +89,6 @@ $content_dataAr = array(
   'messages'  => $user_messages->getHtml(),
   'agenda'    => $user_agenda->getHtml(),
   //'results'=>$results,
-  'edit_switcher'=>$edit_profile_link->getHtml(),
   'status'    => $status,
   'banner'    => $banner,
   'help'      => $help,
@@ -108,18 +104,15 @@ $content_dataAr = array(
 $layout_dataAr['JS_filename'] = array(
 		JQUERY,
 		JQUERY_UI,
-		JQUERY_UNIFORM,
-                JQUERY_DATATABLE,
+        JQUERY_DATATABLE,
 		JQUERY_NO_CONFLICT,
-                JQUERY_MASKEDINPUT,
-                
-                );
+		JQUERY_MASKEDINPUT
+);
 
 $layout_dataAr['CSS_filename'] = array (
 		JQUERY_UI_CSS,
-                JQUERY_UNIFORM_CSS,
-                JQUERY_DATATABLE_CSS,
-                );
+		JQUERY_DATATABLE_CSS
+);
 
 ARE::render($layout_dataAr,$content_dataAr,NULL, array('onload_func' => "initDoc();"));
 ?>

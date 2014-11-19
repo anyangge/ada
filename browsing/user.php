@@ -237,10 +237,6 @@ if(!AMA_DataHandler::isError($courseInstances)) {
 } else {
     $data = new CText('');
 }
-$edit_profile=$userObj->getEditProfilePage();
-$edit_profile_link=CDOMElement::create('a', 'href:'.$edit_profile);
-$edit_profile_link->addChild(new CText(translateFN('Modifica profilo')));
-
 $last_access=$userObj->get_last_accessFN(null,"UT",null);
 $last_access=AMA_DataHandler::ts_to_date($last_access);
 
@@ -271,11 +267,10 @@ if (!$displayWhatsNew)
 	//    'corsi' => $corsi,
 	//    'profilo' => $profilo,
 	    'data' => $data->getHtml(),
-            'edit_user'=>$edit_profile_link->getHtml(),
+            'edit_profile'=>$userObj->getEditProfilePage(),
 	    'messages' => $user_messages->getHtml(),
 	    'agenda' => $user_agenda->getHtml(),
 	    'events' => $user_events->getHtml(),
-	    'submenu_actions' => $submenu_actions,
 	    'status' => $status
 	);
 }
@@ -283,6 +278,8 @@ else {
 	// will use user.tpl template here
 	
 	// look for passed course in courseInstances array
+    
+    if($found>1){
 	for ($i=0; $i<count($courseInstances); $i++)
 	{
 	// break out from the loop if id_corso is found, and in $i
@@ -290,7 +287,12 @@ else {
 	if ($courseInstances[$i]['id_corso'] == $get_id_course) break;
 	}
 	
-	$c = $courseInstances[$i];	
+	$c = $courseInstances[$i];
+    }
+    else{
+        $c = $courseInstances[0];
+    }
+        
 	$currentTimestamp = time();
 	
 	$isEnded = ($c['data_fine'] > 0 && $c['data_fine'] < time()) ? true : false;
@@ -339,6 +341,7 @@ else {
 	
 	// @author giorgio 24/apr/2013 forum messages (NOTES!!!!! BE WARNED: THESE ARE NOTES!!!)
 	$msg_forum_count = MultiPort::count_new_notes($userObj,$courseInstanceId);
+        
 	//display a direct link to forum if there are new messages
 	if ($msg_forum_count > 0) {
 		$link = CDOMElement::create('a', 'href:main_index.php?op=forum&id_course='.$courseId.'&id_course_instance='.$courseInstanceId);
@@ -363,7 +366,6 @@ else {
 	
 	// @author giorgio 24/apr/2013 gocontinue link
 	$last_visited_node_id = $userObj->get_last_accessFN($courseInstanceId,"N");
-	
 	if  ((!empty($last_visited_node_id)) AND (!is_object($last_visited_node_id))&& $isStarted && !$isEnded){
 		$last_node_visitedObj = BaseHtmlLib::link("view.php?id_course=$courseId&id_node=$last_visited_node_id&id_course_instance=$courseInstanceId",translateFN("Continua"));
 		// echo "<!--"; var_dump($last_node_visitedObj);echo "-->";
@@ -381,7 +383,7 @@ else {
 	//	    Graphical disposition:
 	
 	$gostart_link = translateFN('Il corso non è ancora iniziato');
-	if ($subscription_status != ADA_STATUS_SUBSCRIBED && $subscription_status != ADA_STATUS_VISITOR) {
+	if ($subscription_status != ADA_STATUS_SUBSCRIBED && $subscription_status != ADA_STATUS_VISITOR && $subscription_status!= ADA_SERVICE_SUBSCRIPTION_STATUS_COMPLETED) {
 		$gostart = BaseHtmlLib::link("#",
 				translateFN('Abilitazione in corso...'));
 		$gostart_link = $gostart->getHtml();
@@ -415,6 +417,7 @@ else {
 	
 	 
 	$gochat_link = "";
+        $content_dataAr['edit_profile'] = $userObj->getEditProfilePage();
 	$content_dataAr['gostart'] = $gostart_link;
 	$content_dataAr['gocontinue'] = $last_node_visited_link;
 	$content_dataAr['goindex'] = $goindex_link;		
@@ -435,7 +438,6 @@ else {
         $content_dataAr['last_visit'] = $last_access;
 	$content_dataAr['message'] = $message;
 	$content_dataAr['course_title'] = translateFN("Home dell'utente"). " &gt; ".translateFN("Novità");
-	$content_dataAr['submenu_actions'] =  $submenu_actions;
 	$content_dataAr['status'] = $status;
 }
 
