@@ -426,6 +426,7 @@ INSERT INTO `menu_tree` (`tree_id`, `parent_id`, `item_id`, `extraClass`) VALUES
 (3, 0, 1, ''),
 (3, 0, 15, ''),
 (3, 0, 16, ''),
+(3, 0, 24, ''),
 (3, 16, 17, ''),
 (3, 16, 18, ''),
 (4, 0, 1, ''),
