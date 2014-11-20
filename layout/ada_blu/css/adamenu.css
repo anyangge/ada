@@ -57,6 +57,12 @@ background-color: rgba(255,255,255,0.2);
 
 .ui.search.input span { display: none; }
 
+.ui.menu.ada .userpopup { width: 10em;
+                          white-space: nowrap;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+}
+
 @media only screen and (max-width : 1220px) {
     .ui.menu.ada .searchItem { width: 9em; }
     .ui.menu.ada .searchItem input[type="text"] { width: 9em; float:right; }
