@@ -714,6 +714,7 @@ class MultiPort
             $userObj->setProfile($user_info['profilo']);
             $userObj->setFee($user_info['tariffa']);
           }
+        $tester_dh->disconnect();
         }
         $return = $userObj;
         break;
@@ -756,6 +757,7 @@ class MultiPort
     			$userObj->setExtras($extraAr);
     			$return = $userObj;
     		}
+                $tester_dh->disconnect();
     	}    	    	
     }
     
@@ -863,6 +865,7 @@ class MultiPort
                     if (!AMA_DB::isError($extraAr)) {
                             $userObj->setExtras($extraAr);
                     }
+            $tester_dh->disconnect();
             }    	    	
         }
         return $userObj;
@@ -893,6 +896,7 @@ class MultiPort
             $userObj->setProfile($user_info['profilo']);
             $userObj->setFee($user_info['tariffa']);
           }
+        $tester_dh->disconnect();
         }
         return $userObj;
         break;
