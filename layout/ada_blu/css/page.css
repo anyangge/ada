@@ -681,3 +681,8 @@ html, body {
 #container {
     padding-top:0;
 }
+
+.firstnode p {
+    font-size: 20px;
+    font-family: Cambria, serif;
+}
